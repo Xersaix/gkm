@@ -1,0 +1,16 @@
+.holiday-data i
+{
+    /* Center the content */
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    /* Colors */
+    background-color: #D3E2F7;
+    color: #3B7DDD;
+
+    /* Rounded border */
+    border-radius: 50%;
+    height: 2.5rem;
+    width: 2.5rem;
+}

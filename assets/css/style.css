@@ -1,0 +1,250 @@
+/* View container */
+body{
+    overflow: hidden;
+}
+
+.viewport {
+
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100%;
+    overflow-y: hidden;
+}
+
+/* Aside Menu */
+.viewport aside {
+    height: 100%;
+    width: 23%;
+    background-color: #222E3C;
+    overflow-y:auto;
+    scrollbar-gutter:stable;
+    z-index: 10;
+}
+
+/* width */
+ aside::-webkit-scrollbar {
+    width: 10px;
+    position: absolute;
+    
+    left:0;
+  }
+  
+  /* Track */
+  aside::-webkit-scrollbar-track {
+    background-color: #f1f1f100;
+  
+  }
+
+  aside:hover::-webkit-scrollbar-thumb{
+
+    background: #888888;
+
+  }
+  /* Handle */
+  aside::-webkit-scrollbar-thumb {
+    background-color: #88888800;
+    border-radius: 10px;
+
+  }
+  
+  /* Handle on hover */
+  aside::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+/* Container for the dropdown in aside */
+aside .aside-dropdown {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #637282;
+}
+aside .aside-dropdown:hover {
+
+    color: rgb(129, 147, 167);
+}
+
+aside .aside-link {
+    width: 100%;
+    display: flex;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10%;
+    padding-right: 10%;
+    flex-direction: row;
+    align-items: center;
+    color: #637282;
+    justify-content: space-between;
+}
+
+.aside-link:hover a{
+    color: rgb(129, 147, 167); 
+}
+
+.aside-link a{
+   color: #637282;
+}
+/* Container for the dropdown in aside (only the part that can be seletec) */
+aside .aside-dropdown-container
+{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10%;
+    padding-right: 10%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*Container for dropdown content */
+aside .aside-dropdown .aside-dropdown-content
+{
+    display: none;
+    width: 100%;
+    flex-direction: column;
+
+
+}
+.aside-dropdown-content a{
+
+    color: #637282;
+}
+
+.aside-dropdown-content a:hover{
+
+    color: rgb(128, 144, 163);
+}
+
+/* modification on the selected part of the dropwn */
+.selected-aside
+{
+
+background-color: #233346;
+border-left: solid 3px #3B7DDD;
+color:white;
+}
+.selected-aside:hover a{
+    color:white;
+}
+/* selected dropdown modification on the p */
+.selected-aside a{
+    color:white;
+
+}
+
+aside .aside-top
+{
+    height: 20%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+/* viewport aside overlay */
+.viewport .aside-overlay {
+    position: absolute;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.614);
+    visibility: hidden;
+    z-index: 10;
+}
+
+
+
+@media only screen and (max-width: 769px) {
+    .viewport aside {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 50%;
+        visibility: hidden;
+    }
+}
+
+/* Content of the rest of the page */
+.viewport .content {
+
+    width: 100%;
+    height: 100%;
+    background-color: #F5F7FB;
+    overflow-y: scroll;
+
+
+}
+
+
+
+/* Navbar */
+.content .my-navbar {
+
+    width: 100%;
+    height: 8%;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    box-shadow: 0px 5px 15px -2px rgba(0, 0, 0, 0.052);
+
+}
+
+
+.my-navbar .left-part-nav {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+}
+
+.my-navbar .right-part-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    width: 50%;
+}
+
+/* Initial Avatar */
+.initial-avatar {
+    /* Center the content */
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    /* Colors */
+    background-color: #3B7DDD;
+    color: #fff;
+
+    /* Rounded border */
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+}
+.initial-avatar-nav {
+    /* Center the content */
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    /* Colors */
+    background-color: #3B7DDD;
+    color: #fff;
+
+    /* Rounded border */
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+}
+
+
+/* Inside the content container */
+.in-content{
+    height: 100%;
+    padding-top: 70px;
+    
+
+}
