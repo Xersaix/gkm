@@ -40,7 +40,7 @@
 
 
     <div class="aside-link">
-        <a href="" class="is-size-7"><i class="bi bi-calendar-event mr-3 is-size-6"></i>Mes Congées</a>
+        <a href="controller-holiday.php" class="is-size-7"><i class="bi bi-calendar-event mr-3 is-size-6"></i>Mes Congées</a>
     </div>
 
     <div class="aside-link">

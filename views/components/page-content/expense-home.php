@@ -1,3 +1,7 @@
+<div class="columns is-flex is-flex-direction-column">
+
+
+
 <?php
 foreach ($list as  $value) { ?>
   <div class="modal" id="<?= $value["expense_id"] ?>">
@@ -29,7 +33,7 @@ foreach ($list as  $value) { ?>
                         <th>Type de Dépense</th>
                         <th>Raison</th>
                         <th>Montant</th>
-                        <th>État d'Acceptation</th>
+                        <th>Status</th>
                         <th>Justificatif</th>
                         <th>Preuve</th>
                     </tr>
@@ -54,18 +58,18 @@ foreach ($list as  $value) { ?>
                         <?php
                         if($value["status"] == "Accepté")
                         {
-                            echo '<td class="has-text-centered"><span class="tag is-success is-medium">Accepté</span></td>';
+                            echo '<td class="has-text-centered"><span class="tag is-success mt-3 is-medium">Accepté</span></td>';
                         }
                         else if($value["status"] == "En attente")
                         {
-                            echo '<td class="has-text-centered"><span class="tag is-warning is-medium"> En attente </span></td>';
+                            echo '<td class="has-text-centered"><span class="tag is-warning mt-3 is-medium"> En attente </span></td>';
                         }
                         else if($value["status"] == "Refusé")
                         {
-                            echo '<td class="has-text-centered"><span class="tag is-danger is-medium">Refusé</span></td>';
+                            echo '<td class="has-text-centered"><span class="tag is-danger mt-3 is-medium">Refusé</span></td>';
                         }
                         ?>
-                        <td class=""><a href="<?=$base64ImageSrc ?>" data-lightbox="image-<?= $value["expense_id"]  ?>" data-title="My caption"><img class="image is-64x64" src="<?=$base64ImageSrc ?>" alt="" class=""  ?></a></span></td>
+                        <td class=""><a href="<?=$base64ImageSrc ?>" data-lightbox="image-<?= $value["expense_id"]  ?>" data-title="My caption"><img class="image is-64x64 pl-5" src="<?=$base64ImageSrc ?>" alt="" class=""  ?></a></span></td>
                         <td class="has-text-centered p-2">
                 <?php if ($value["status"] == "En attente") { ?> 
                 <button class="button is-success has-text-white"><a href="controller-employer-update-expense.php?id=<?= $value['expense_id'] ?>">
@@ -89,4 +93,6 @@ foreach ($list as  $value) { ?>
                 </tbody>
             </table>
         </div>
+    
+    </div>
 <script src="../assets/js/modal.js"></script>
