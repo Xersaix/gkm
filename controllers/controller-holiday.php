@@ -11,7 +11,9 @@ if(!isset($_SESSION["id"])){
     $connected = true;
 }
 
+$selected_date = [];
 
+$days = date("t");
 
 include "../views/holiday.php";
 ?>
