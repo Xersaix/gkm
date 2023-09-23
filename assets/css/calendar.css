@@ -7,3 +7,21 @@
 
     height:10vh;
 }
+
+table .table-top-left
+{
+    border: 0px solid rgba(250, 235, 215, 0);
+    background-color: #F5F7FB;
+}
+
+table td{
+
+    width:50px;
+}
+
+td button{
+
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    
+}

@@ -4,17 +4,16 @@ include_once "../helpers/Database.php";
 class Expense
 {
 
-    public static function addExpense($date,$ttc,$ht,$reason,$type,$employer,$image)
+    public static function addExpense($date,$ttc,$reason,$type,$employer,$image)
     {
         $conn = Database::connectDatabase();
     
-        $stmt = $conn->prepare("INSERT INTO `expense_note`(`payment_date`, `payment_ttc`, `payment_ht`, `reason`,
+        $stmt = $conn->prepare("INSERT INTO `expense_note`(`payment_date`, `payment_ttc`, `reason`,
            `id_Expense_Type`, `ID_Worker`, `ID_status`,image)
-         VALUES (:date,:ttc,:ht,:reason,:type,:employer,1,:img)");
+         VALUES (:date,:ttc,:reason,:type,:employer,2,:img)");
     
         $stmt->bindParam(':date', $date);
         $stmt->bindParam(':ttc', $ttc);
-        $stmt->bindParam(':ht', $ht);
         $stmt->bindParam(':reason', $reason);
         $stmt->bindParam(':type', $type);
         $stmt->bindParam(':employer', $employer);
@@ -26,16 +25,15 @@ class Expense
 
 
 
-    public static function updateExpense($date,$ttc,$ht,$reason,$type,$employer,$id,$img)
+    public static function updateExpense($date,$ttc,$reason,$type,$employer,$id,$img)
     {
         $conn = Database::connectDatabase();
     
-        $stmt = $conn->prepare("UPDATE `expense_note` SET `payment_date` = :date, `payment_ttc` = :ttc, `payment_ht` = :ht, `reason` = :reason,
-           `id_Expense_Type` = :type , `ID_Worker` = :employer, `ID_status` = 1 , `image` = :img   WHERE id = :id ");
+        $stmt = $conn->prepare("UPDATE `expense_note` SET `payment_date` = :date, `payment_ttc` = :ttc, `reason` = :reason,
+           `id_Expense_Type` = :type , `ID_Worker` = :employer, `ID_status` = 2 , `image` = :img   WHERE id = :id ");
     
         $stmt->bindParam(':date', $date);
         $stmt->bindParam(':ttc', $ttc);
-        $stmt->bindParam(':ht', $ht);
         $stmt->bindParam(':reason', $reason);
         $stmt->bindParam(':type', $type);
         $stmt->bindParam(':employer', $employer);
@@ -79,6 +77,7 @@ class Expense
         return $result;
     
     } 
+
 
 
     public static function validExpense($date,$id)

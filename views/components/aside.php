@@ -31,27 +31,42 @@
                 <a href="controller-expense.php" class="is-size-7"><i class="bi bi-arrow-right mr-3"></i>Liste de dépense</a>
             </div>
             <div class="aside-link">
-                <a href="" class="is-size-7"><i class="bi bi-arrow-right mr-3"></i>Ajouter une dépense</a>
+                <a href="controller-new-expense.php" class="is-size-7"><i class="bi bi-arrow-right mr-3"></i>Ajouter une dépense</a>
             </div>
         </span>
     </div>
     <!-- End of the first Dropdown -->
+        <!-- Aside dropdown -->
+        <div class="aside-dropdown ">
+        <!-- Dropdown selectable content -->
+        <span class="aside-dropdown-container <?= $page_name["holiday"] ?? "" ?>">
+
+            <p class="is-size-7"> <i class="bi bi-calendar-event mr-3 is-size-6"></i> Mes Congées</p>
+            <i class="bi bi-chevron-down"></i>
+        </span>
+        <!-- Dropdown content -->
+        <span class="aside-dropdown-content">
+            <div class="aside-link">
+                <a href="controller-holiday.php?day=<?= date("d")?>&month=<?= date("m")?>&year=<?= date("y")?>" class="is-size-7"><i class="bi bi-arrow-right mr-3"></i>Calendrier</a>
+            </div>
+            <div class="aside-link">
+                <a href="controller-new-holiday.php" class="is-size-7"><i class="bi bi-arrow-right mr-3"></i>Prendre un congé</a>
+            </div>
+        </span>
+    </div>
+    <!-- End of the second Dropdown -->
 
 
 
-    <div class="aside-link">
-        <a href="controller-holiday.php" class="is-size-7"><i class="bi bi-calendar-event mr-3 is-size-6"></i>Mes Congées</a>
+    <div class="aside-link <?= $page_name["payslip"] ?? "" ?>">
+        <a href="controller-payslip.php" class="is-size-7 "><i class="bi bi-files mr-3 is-size-6"></i>Fiche de paie</a>
     </div>
 
-    <div class="aside-link">
-        <a href="" class="is-size-7"><i class="bi bi-files mr-3 is-size-6"></i>Fiche de paie</a>
+    <div class="aside-link <?= $page_name["file"] ?? "" ?>">
+        <a href="controller-file.php" class="is-size-7"><i class="bi bi-file-earmark-text-fill mr-3 is-size-6"></i>Documents</a>
     </div>
 
-    <div class="aside-link">
-        <a href="" class="is-size-7"><i class="bi bi-envelope mr-3 is-size-6"></i>Courrier</a>
-    </div>
-
-
+    <?php if($_SESSION["id_account_type"] != 3){ ?>
     <!-- Separation -->
     <p class="has-text-white ml-4 my-5">Secrétaire</p>
 
@@ -63,7 +78,7 @@
         <a href="" class="is-size-7"><i class="bi bi-plus-lg mr-3 is-size-6"></i>Ajouter un employée</a>
     </div>
 
-
+    <?php } ?>
 
     <p class="has-text-white ml-4 my-5">Rosalie</p>
 

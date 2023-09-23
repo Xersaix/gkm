@@ -24,7 +24,7 @@ foreach ($list as  $value) { ?>
 </div>
 <?php } ; ?>
 
-<h1 class="title">Liste de Dépenses d'Employé</h1>
+<h1 class="title">Liste de Dépenses </h1>
         <div class="table-container">
             <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                 <thead>
@@ -45,11 +45,11 @@ foreach ($list as  $value) { ?>
                     $imgData = $value["image"];
 
                     // link to the file for the img tag <img src="data:image/gif;base64,R0lGODdhAQABAPAAAP8AAAAAACwAAAAAAQABAAACAkQBADs" />
-                    $base64ImageSrc = 'data:' . "image/png" . ';base64,' . $imgData; 
+                    $base64ImageSrc = "../assets/img/uploads/expense/" . $imgData; 
 
                   ?>
 
-                    <tr>
+                    <tr class="has-text-centered">
                         <td><?= $value["payment_date"] ?> </td>
                         <td><?= $value["expense_type"] ?></td>
                         <td><?= $value["reason"] ?></td>
@@ -72,7 +72,7 @@ foreach ($list as  $value) { ?>
                         <td class=""><a href="<?=$base64ImageSrc ?>" data-lightbox="image-<?= $value["expense_id"]  ?>" data-title="My caption"><img class="image is-64x64 pl-5" src="<?=$base64ImageSrc ?>" alt="" class=""  ?></a></span></td>
                         <td class="has-text-centered p-2">
                 <?php if ($value["status"] == "En attente") { ?> 
-                <button class="button is-success has-text-white"><a href="controller-employer-update-expense.php?id=<?= $value['expense_id'] ?>">
+                <button class="button is-success has-text-white"><a href="controller-update-expense.php?id=<?= $value['expense_id'] ?>">
                 Modifier
               </a>
               </button>
