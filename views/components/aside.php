@@ -71,7 +71,7 @@
     <p class="has-text-white ml-4 my-5">Secrétaire</p>
 
     <div class="aside-link">
-        <a href="" class="is-size-7"><i class="bi bi-people-fill mr-3 is-size-6"></i>Liste des employées</a>
+        <a href="controller-worker-list.php" class="is-size-7"><i class="bi bi-people-fill mr-3 is-size-6"></i>Liste des employées</a>
     </div>
 
     <div class="aside-link">
