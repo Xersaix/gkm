@@ -14,3 +14,13 @@
     height: 2.5rem;
     width: 2.5rem;
 }
+
+.file-list-box{
+
+
+}
+
+.file-list-box .file-list li{
+
+    list-style: none;
+}

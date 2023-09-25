@@ -97,7 +97,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     {
 
 
-        $finfo = new finfo(FILEINFO_MIME);
+        $finfo = new finfo(FILEINFO_MIME_TYPE);
        if($_FILES["file"]["error"] != 0)
        {
 
@@ -125,11 +125,31 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 if(count($errors) == 0)
 {
 
-    $img_file = file_get_contents($_FILES["file"]["tmp_name"]);
-    $data = uniqid($_SESSION["id"].'-');
-    move_uploaded_file($_FILES["file"]["tmp_name"],"../assets/img/uploads/expense/".$data);
-    Expense::addExpense($expense_date,$price_TTC,$expense_reason,$expense_type,$_SESSION["id"],$data);
-    $show = true;
+    $file_path = '../assets/img/uploads/expense/'.$_SESSION["id"];
+
+  
+    // Checking whether file exists or not
+    if (!file_exists($file_path)) {
+      
+        // Create a new file or direcotry
+        mkdir($file_path, 0777, true);
+    }
+
+    $ext = "";
+    switch($finfo->file($_FILES["file"]["tmp_name"]))
+    {
+        case 'image/bmp': $ext = '.bmp'; break;
+        case 'image/gif': $ext = '.gif'; break;
+        case 'image/jpeg': $ext = '.jpg'; break;
+        case 'image/png': $ext = '.png'; break;
+        default: $ext = false;
+    }
+
+
+    $data = uniqid($_SESSION["id"]);
+    move_uploaded_file($_FILES["file"]["tmp_name"],$file_path."/".$data."{$ext}");
+    Expense::addExpense($expense_date,$price_TTC,$expense_reason,$expense_type,$_SESSION["id"],$data."{$ext}");
+    header('Location: controller-expense.php');
 }
 
 }

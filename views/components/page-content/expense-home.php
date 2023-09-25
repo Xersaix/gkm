@@ -25,7 +25,8 @@ foreach ($list as  $value) { ?>
 <?php } ; ?>
 
 <h1 class="title">Liste de Dépenses </h1>
-        <div class="table-container">
+<?= count($list) == 0 ? "Aucune dépense" : "" ?>
+        <div class="table-container <?= count($list) == 0 ? "is-hidden" : "" ?>">
             <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                 <thead>
                     <tr>
@@ -38,14 +39,14 @@ foreach ($list as  $value) { ?>
                         <th>Preuve</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="">
                <?php foreach ($list as  $value) { ?>
                 <?php
                     // get the base64 file
                     $imgData = $value["image"];
 
                     // link to the file for the img tag <img src="data:image/gif;base64,R0lGODdhAQABAPAAAP8AAAAAACwAAAAAAQABAAACAkQBADs" />
-                    $base64ImageSrc = "../assets/img/uploads/expense/" . $imgData; 
+                    $base64ImageSrc = "../assets/img/uploads/expense/".$_SESSION["id"]."/". $imgData; 
 
                   ?>
 

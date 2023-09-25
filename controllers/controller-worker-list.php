@@ -1,12 +1,11 @@
 <?php 
 session_start();
 
-include_once "../models/Expense.php";
 include_once "../models/Worker.php";
 
 
 $page_name = [];
-$page_name["file"] = "selected-aside";
+$page_name["worker-list"] = "selected-aside";
 $connected = false;
 if(!isset($_SESSION["id"])){
     $connected = false;
@@ -16,6 +15,7 @@ if(!isset($_SESSION["id"])){
     $connected = true;
 }
 
+$list = Worker::getAllWorker();
 
 include "../views/worker-list.php";
 ?>

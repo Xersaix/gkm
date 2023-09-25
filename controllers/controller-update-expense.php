@@ -95,7 +95,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     {
 
 
-        $finfo = new finfo(FILEINFO_MIME);
+        $finfo = new finfo(FILEINFO_MIME_TYPE);
 
        if($_FILES["file"]["error"] != 0 )
        {
@@ -135,11 +135,23 @@ if(count($errors) == 0)
         Expense::updateExpense($expense_date,$price_TTC,$expense_reason,$expense_type,$_SESSION["id"],$_GET["id"],$expense["image"]);
 
     }else{
-        echo "ok";
-        $img_file = file_get_contents($_FILES["file"]["tmp_name"]);
-        move_uploaded_file($_FILES["file"]["tmp_name"],"../assets/img/uploads/expense/".$expense["image"]);
+       
+    $file_path = '../assets/img/uploads/expense/'.$_SESSION["id"];
+
+    $ext = "";
+    switch($finfo->file($_FILES["file"]["tmp_name"]))
+    {
+        case 'image/bmp': $ext = '.bmp'; break;
+        case 'image/gif': $ext = '.gif'; break;
+        case 'image/jpeg': $ext = '.jpg'; break;
+        case 'image/png': $ext = '.png'; break;
+        default: $ext = false;
+    }
+    
+        move_uploaded_file($_FILES["file"]["tmp_name"],$file_path."/".$expense["image"]);
         Expense::updateExpense($expense_date,$price_TTC,$expense_reason,$expense_type,$_SESSION["id"],$_GET["id"],$expense["image"]);
-        header("Refresh:0");
+        clearstatcache(true,$file_path."/".$expense["image"]);
+        header('Location: controller-expense.php');
 
     }
 }

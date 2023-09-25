@@ -7,27 +7,24 @@
                     <tr>
                         <th>Nom</th>
                         <th>Congée</th>
-                        <th>Ajout de fiche de paie</th>
-                        <th>Ajout de fiche de document</th>
+                       
+                        <th>Ajout de document</th>
                         <th>Ajustement de congée</th>
                     </tr>
                 </thead>
                 <tbody class="has-text-centered">
                     <!-- Employee Rows -->
+                    <?php for ($i=0; $i < count($list) ; $i++) { ?>
+
                     <tr>
-                        <td>John Doe</td>
-                        <td>25 jours</td>
-                        <td><a class="button">Anchor</a></td>
-                        <td><a class="button">Anchor</a></td>
+                        <td><?=$list[$i]["firstname"]?> <?=$list[$i]["lastname"]?></td>
+                        <td><?=$list[$i]["holiday_count"]?> jours</td>
+                        <td><a href="controller-add-file.php?id=<?=$list[$i]["id"]?>" class="button"><i class="bi bi-plus-lg"></i></a></td>
+                        
                         <td><a class="button">Anchor</a></td>
                     </tr>
-                    <tr>
-                        <td>Jane Smith</td>
-                        <td>25 jours</td>
-                        <td><a class="button">Anchor</a></td>
-                        <td><a class="button">Anchor</a></td>
-                        <td><a class="button">Anchor</a></td>
-                    </tr>
+
+                 <?php   } ?>
                     <!-- Add more employees as needed -->
                 </tbody>
             </table>

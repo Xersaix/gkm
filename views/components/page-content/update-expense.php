@@ -2,7 +2,7 @@
 
     <div class="column is-half">
 
-    <a href="<?="../assets/img/uploads/expense/".$expense["image"] ?>" data-lightbox="image" data-title="My caption"><img src="<?="../assets/img/uploads/expense/".$expense["image"] ?>" class="image is-5by1 mb-5" alt=""></a>
+    <a href="<?="../assets/img/uploads/expense/".$_SESSION["id"]."/".$expense["image"] ?>" data-lightbox="image" data-title="My caption"><img src="<?="../assets/img/uploads/expense/".$_SESSION["id"]."/".$expense["image"] ?>" class="image is-5by1 mb-5" alt=""></a>
         <form action="" method="POST" enctype="multipart/form-data">
 
             <!-- Date de paiment -->

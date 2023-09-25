@@ -70,12 +70,16 @@
     <!-- Separation -->
     <p class="has-text-white ml-4 my-5">Secrétaire</p>
 
-    <div class="aside-link">
+    <div class="aside-link <?= $page_name["worker-list"] ?? "" ?>">
         <a href="controller-worker-list.php" class="is-size-7"><i class="bi bi-people-fill mr-3 is-size-6"></i>Liste des employées</a>
     </div>
 
-    <div class="aside-link">
-        <a href="" class="is-size-7"><i class="bi bi-plus-lg mr-3 is-size-6"></i>Ajouter un employée</a>
+    <div class="aside-link <?= $page_name["add-worker"] ?? "" ?>">
+        <a href="controller-add-worker.php" class="is-size-7"><i class="bi bi-plus-lg mr-3 is-size-6"></i>Ajouter un employée</a>
+    </div>
+    
+    <div class="aside-link <?= $page_name["all-holiday"] ?? "" ?>">
+        <a href="controller-all-holiday.php?day=<?= date("d")?>&month=<?= date("m")?>&year=<?= date("y")?>" class="is-size-7"><i class="bi bi-calendar-event mr-3 is-size-6"></i>Congée des employés</a>
     </div>
 
     <?php } ?>

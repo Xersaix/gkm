@@ -6,7 +6,7 @@ include_once "../models/Worker.php";
 
 
 $page_name = [];
-$page_name["file"] = "selected-aside";
+$page_name["holiday"] = "selected-aside";
 $connected = false;
 if(!isset($_SESSION["id"])){
     $connected = false;

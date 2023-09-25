@@ -24,6 +24,18 @@ public static function verifyEmail($email)
 }
 
 
+public static function addWorker($firstname,$lastname,$password,$email)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("INSERT INTO worker (firstname, lastname, email, password, holiday_count, id_account_type) VALUES ( :firstname , :lastname , :email , :password , 0, 3);");
+    $stmt->bindParam(':firstname', $firstname);
+    $stmt->bindParam(':lastname', $lastname);
+    $stmt->bindParam(':password', $password);
+    $stmt->bindParam(':email', $email);
+    $stmt->execute();
+    $conn = null;
+}
+
 public static function verifyPassLink($email,$password)
 {
 
@@ -118,6 +130,121 @@ public static function addHoliday($id,$fullday,$date)
     $conn = null;
 }
 
+public static function getAllWorker()
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("SELECT * FROM `worker`");
+    $stmt->execute();
+    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $result =  $stmt->fetchAll();
+    $conn = null;
+    return $result;
+}
+
+
+public static function addFile($id,$file,$date,$type)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("INSERT INTO `worker_file`(`image`, `date`, `ID_Worker`, `id_File_Type`) VALUES ( :file , :date , :id , :type )");
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':file', $file);
+    $stmt->bindParam(':date', $date);
+    $stmt->bindParam(':type', $type);
+    $stmt->execute();
+    $conn = null;
+
+}
+
+public static function getLastWorkerFile($id)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("SELECT wf.*, ft.name AS file_type_name FROM worker_file wf JOIN file_type ft ON wf.id_File_Type = ft.id WHERE wf.ID_Worker = :id AND wf.id_File_Type = 2 ORDER BY wf.date DESC LIMIT 3");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $result =  $stmt->fetchAll();
+    $conn = null;
+    return $result;
+
+}
+
+public static function getLastWorkerPayslip($id)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("SELECT wf.*, ft.name AS file_type_name FROM worker_file wf JOIN file_type ft ON wf.id_File_Type = ft.id WHERE wf.ID_Worker = :id AND wf.id_File_Type = 1 ORDER BY wf.date DESC LIMIT 3");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $result =  $stmt->fetchAll();
+    $conn = null;
+    return $result;
+
+}
+
+public static function getWorkerHolidayNumber($id)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("SELECT SUM(CASE WHEN s.name = 'Accepté' THEN 1 ELSE 0 END) AS Accepté, SUM(CASE WHEN s.name = 'En attente' THEN 1 ELSE 0 END) AS En_attente, SUM(CASE WHEN s.name = 'Refusé' THEN 1 ELSE 0 END) AS Refusé FROM status s LEFT JOIN holiday_claim hc ON s.id = hc.ID_status AND hc.ID_Worker = :id");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $result =  $stmt->fetch();
+    $conn = null;
+    return $result;
+
+}
+
+public static function getWorkerExpenseNumber($id)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("SELECT SUM(CASE WHEN s.name = 'Accepté' THEN 1 ELSE 0 END) AS Accepté, SUM(CASE WHEN s.name = 'En attente' THEN 1 ELSE 0 END) AS En_attente, SUM(CASE WHEN s.name = 'Refusé' THEN 1 ELSE 0 END) AS Refusé FROM expense_note en JOIN status s ON en.ID_status = s.id WHERE en.ID_Worker = :id");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $result =  $stmt->fetch();
+    $conn = null;
+    return $result;
+
+}
+
+public static function getWorkerFileNumber($id)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("SELECT COUNT(*) AS total_files FROM worker_file WHERE ID_Worker = :id AND id_File_Type != 1;");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $result =  $stmt->fetch();
+    $conn = null;
+    return $result;
+
+}
+
+public static function getWorkerHolidayCount($id)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("SELECT holiday_count FROM worker WHERE id = :id ");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $result =  $stmt->fetch();
+    $conn = null;
+    return $result;
+
+}
+
+
+public static function setHolidayState($id,$state)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("UPDATE holiday_claim SET ID_status = :state WHERE id = :id ");
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':state', $state);
+    $stmt->execute();
+    $conn = null;
+
+
+}
 
 }
 ?>
