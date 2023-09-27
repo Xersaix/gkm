@@ -10,6 +10,7 @@
                        
                         <th>Ajout de document</th>
                         <th>Ajustement de congée</th>
+                        <th>Frais</th>
                     </tr>
                 </thead>
                 <tbody class="has-text-centered">
@@ -21,7 +22,8 @@
                         <td><?=$list[$i]["holiday_count"]?> jours</td>
                         <td><a href="controller-add-file.php?id=<?=$list[$i]["id"]?>" class="button"><i class="bi bi-plus-lg"></i></a></td>
                         
-                        <td><a class="button">Anchor</a></td>
+                        <td><a href="controller-adjust-holiday.php?id=<?=$list[$i]["id"]?>" class="button">Ajuster</a></td>
+                        <td><a href="controller-admin-expense.php?id=<?=$list[$i]["id"]?>" class="button">Liste de dépense</a></td>
                     </tr>
 
                  <?php   } ?>

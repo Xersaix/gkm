@@ -242,9 +242,51 @@ public static function setHolidayState($id,$state)
     $stmt->bindParam(':state', $state);
     $stmt->execute();
     $conn = null;
-
-
 }
 
+public static function plusHoliday($id,$number)
+{
+$conn = Database::connectDatabase();
+$stmt = $conn->prepare("UPDATE worker SET holiday_count = holiday_count + :number WHERE id = :id ");
+$stmt->bindParam(':id', $id);
+$stmt->bindParam(':number', $number);
+$stmt->execute();
+$conn = null;    
 }
+
+public static function subtractHoliday($id,$number)
+{
+$conn = Database::connectDatabase();
+$stmt = $conn->prepare("UPDATE worker SET holiday_count = holiday_count - :number WHERE id = :id ");
+$stmt->bindParam(':id', $id);
+$stmt->bindParam(':number', $number);
+$stmt->execute();
+$conn = null;    
+}
+
+
+public static function setExpenseState($id,$state)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("UPDATE expense_note SET ID_status = :state WHERE id = :id ");
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':state', $state);
+    $stmt->execute();
+    $conn = null;
+}
+
+public static function setExpenseDate($id,$date,$result)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("UPDATE expense_note SET validation_date = :date, result_commentary = :result WHERE id = :id ");
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':date', $date);
+    $stmt->bindParam(':result', $result);
+    $stmt->execute();
+    $conn = null;
+}
+}
+
+
+
 ?>

@@ -1,9 +1,9 @@
 <section class="section">
         <div class="container">
             <h1 class="title">Liste de documents</h1>
-            <div class="columns is-multiline">
+            <div class="columns <?= count($list) == 0 ? "is-hidden" : "" ?> is-multiline">
                 <!-- Card for each file -->
-
+                <?= count($list) == 0 ? "Aucune dépense" : "" ?>
                 <?php for ($i=0; $i < count($list) ; $i++) {  ?>
                     <div class="column is-one-third">
                     <div class="card">
