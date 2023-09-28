@@ -1,6 +1,8 @@
 <section class="section">
         <div class="container">
-            <h1 class="title">Liste de fiche de paie</h1>
+        <div class="three">
+  <h1>Liste de fiche de paie</h1>
+</div>
             <div class="columns is-multiline">
                 <!-- Card for each file -->
 

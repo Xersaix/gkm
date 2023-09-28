@@ -285,6 +285,42 @@ public static function setExpenseDate($id,$date,$result)
     $stmt->execute();
     $conn = null;
 }
+
+public static function get4NewNotif($id)
+{
+$conn = Database::connectDatabase();
+$stmt = $conn->prepare("SELECT * FROM notification WHERE ID_Worker = :id AND seen = 0 ORDER BY date DESC LIMIT 4");
+$stmt->bindParam(':id', $id);
+$stmt->execute();
+$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+$result =  $stmt->fetchAll();
+$conn = null;
+return $result;
+
+}
+
+public static function deleteNotif($id)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("DELETE FROM notification WHERE id = :id");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $conn = null;
+}
+
+public static function newNotif($id,$date,$title,$icon,$text)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("INSERT INTO `notification`( `date`, `title`, `text`, `icon`, `seen`, `ID_Worker`) VALUES (:date, :title , :text , :icon , 0 , :id )");
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':date', $date);
+    $stmt->bindParam(':title', $title);
+    $stmt->bindParam(':icon', $icon);
+    $stmt->bindParam(':text', $text);
+    $stmt->execute();
+    $conn = null;
+}
+
 }
 
 

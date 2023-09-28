@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GKM Gestionnaire de congé payer</title>
     <link rel="icon" type="image/x-icon" href="../assets/img/gkm2.ico">
-    <link href="../node_modules/lightbox2/dist/css/lightbox.css" rel="stylesheet" />
-    <script src="../node_modules/lightbox2/dist/js/lightbox-plus-jquery.js"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/content.css">
     <link rel="stylesheet" href="../assets/css/calendar.css">

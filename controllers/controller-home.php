@@ -19,5 +19,7 @@ $expense_number = Worker::getWorkerExpenseNumber($_SESSION["id"]);
 $file_number = Worker::getWorkerFileNumber($_SESSION["id"]);
 $holiday_count = Worker::getWorkerHolidayCount($_SESSION["id"]);
 
+
+
 include "../views/home.php";
 ?>

@@ -1,6 +1,8 @@
 <section class="section">
         <div class="container">
-            <h1 class="title">Liste d'Employés</h1>
+        <div class="three">
+  <h1>Liste des employés</h1>
+</div>
             <div class="table-container">
             <table class="table is-bordered is-striped is-hoverable is-fullwidth">
                 <thead class="has-text-centered">

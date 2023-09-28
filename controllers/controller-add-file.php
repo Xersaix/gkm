@@ -142,6 +142,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     $data = uniqid($_GET["id"]);
     move_uploaded_file($_FILES["file"]["tmp_name"],$file_path."/".$data."{$ext}");
     Worker::addFile($_GET["id"],$data."{$ext}",$date,$file_type);
+    if($file_type == 1)
+    {
+        Worker::newNotif($_GET["id"],date("Y-m-d"),"Fiche de paie","bi bi-file-plus has-text-info","Vous avez reçu une nouvelle fiche de paie.");
+    }
+    else
+    {
+        Worker::newNotif($_GET["id"],date("Y-m-d"),"Document","bi bi-file-plus has-text-info","Vous avez reçu un nouveau document.");
+    }
+    header('Location: controller-worker-list.php');
 }
 }
 

@@ -9,7 +9,9 @@
 </div>
 </div>
 
-<h1 class="title">Planification mensuelle</h1>
+<div class="three">
+  <h1>Calendrier des demandes</h1>
+</div>
 <div class="table-container my-3">
             <table class="table is-bordered  is-narrow is-hoverable is-fullwidth">
                 <thead>
@@ -41,7 +43,7 @@
                     </tr>
                     <tr>
                         
-                        <td>08H-12H</td>
+                        <td><?= $_SESSION["firstname"]?> <?= $_SESSION["lastname"]?></td>
                         <!-- Add tasks for each day of the month -->
                         <?php   for ($day = 1; $day <= $day_in_month ; $day++) {
                             $date1  = \DateTime::createFromFormat($format, $day . "-" . $_GET["month"] . "-" . $_GET["year"]);

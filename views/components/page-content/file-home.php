@@ -1,6 +1,8 @@
 <section class="section">
         <div class="container">
-            <h1 class="title">Liste de documents</h1>
+        <div class="three">
+  <h1>Liste de document</h1>
+</div>
             <div class="columns <?= count($list) == 0 ? "is-hidden" : "" ?> is-multiline">
                 <!-- Card for each file -->
                 <?= count($list) == 0 ? "Aucune dépense" : "" ?>

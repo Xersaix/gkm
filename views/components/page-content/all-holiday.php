@@ -9,7 +9,9 @@
 </div>
 </div>
 
-<h1 class="title">Planification mensuelle</h1>
+<div class="three">
+  <h1>Calendrier des demandes</h1>
+</div>
 <div class="table-container my-3">
             <table class="table is-bordered  is-narrow is-hoverable is-fullwidth">
                 <thead>

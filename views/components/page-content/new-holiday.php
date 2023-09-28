@@ -3,7 +3,9 @@
 <div class="columns is-flex is-flex-direction-row is-justify-content-center">
     
     <div class="column is-half ">
-        <h1>Demande de congé</h1>
+    <div class="three">
+  <h1>Demande de congé</h1>
+</div>
     <form action="" method="post">
 
         <label for="date">Date du jour de congée:<span class="has-text-danger">

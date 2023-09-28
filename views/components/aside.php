@@ -5,13 +5,13 @@
     <!-- In Aside top of the menu -->
     <div class="aside-top has-text-white">
         <div class="initial-avatar ml-5 mr-3"><p><?= $_SESSION["firstname"][0]?> <?= $_SESSION["lastname"][0]?></p></div>
-        <p class="is-size-6 is-size-7-mobile"> <?= $_SESSION["firstname"]?> <?= $_SESSION["lastname"]?><br>Développeur Web</p>
+        <p class="is-size-6 is-size-7-mobile"> <?= $_SESSION["firstname"]?> <?= $_SESSION["lastname"]?></p>
     </div>
 
 
 
     <!-- Separation -->
-    <p class="has-text-white ml-4 my-5">Compte employée</p>
+    <p class="has-text-white ml-4 my-5">Compte employé</p>
 
 
     <div class="aside-link <?= $page_name["home"] ?? "" ?>">
@@ -68,7 +68,7 @@
 
     <?php if($_SESSION["id_account_type"] != 3){ ?>
     <!-- Separation -->
-    <p class="has-text-white ml-4 my-5">Secrétaire</p>
+    <p class="has-text-white ml-4 my-5">Compte secrétaire</p>
 
     <div class="aside-link <?= $page_name["worker-list"] ?? "" ?>">
         <a href="controller-worker-list.php" class="is-size-7"><i class="bi bi-people-fill mr-3 is-size-6"></i>Liste des employées</a>
@@ -83,8 +83,9 @@
     </div>
 
     <?php } ?>
-
-    <p class="has-text-white ml-4 my-5">Rosalie</p>
+    <!-- Separation -->
+    <?php if($_SESSION["id_account_type"] == 1){ ?>
+    <p class="has-text-white ml-4 my-5">Compte administrateur</p>
 
     <div class="aside-link">
         <a href="" class="is-size-7"><i class="bi bi-calendar-event mr-3 is-size-6"></i>Mes Congées</a>
@@ -100,6 +101,10 @@
 
     <div class="aside-link">
         <a href="" class="is-size-7"><i class="bi bi-bell mr-3 is-size-6"></i>Notification</a>
+    </div>
+    <?php } ?>
+    <div class="aside-link">
+        <a href="controller-disconnect.php" class="is-size-6"><i class="bi bi-box-arrow-right my-5 mr-3 is-size-6"></i>Se déconnecter</a>
     </div>
 
 </aside>

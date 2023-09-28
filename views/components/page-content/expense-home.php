@@ -55,7 +55,9 @@ foreach ($list as  $value) { ?>
 <?php } ; ?>
 <!-- End of modal -->
 
-<h1 class="title">Liste de Dépenses </h1>
+<div class="three">
+  <h1>Liste de frais</h1>
+</div>
 <?= ($list[0]["status"] == null || count($list) == 0) ? "Aucune dépense" : "" ?>
         <div class="table-container <?= ($list[0]["status"] == null || count($list) == 0) ? "is-hidden" : "" ?>">
             <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
