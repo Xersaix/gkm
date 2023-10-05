@@ -13,6 +13,7 @@
                         <th>Ajout de document</th>
                         <th>Ajustement de congée</th>
                         <th>Frais</th>
+                        <th>Abscence</th>
                     </tr>
                 </thead>
                 <tbody class="has-text-centered">
@@ -26,6 +27,7 @@
                         
                         <td><a href="controller-adjust-holiday.php?id=<?=$list[$i]["id"]?>" class="button">Ajuster</a></td>
                         <td><a href="controller-admin-expense.php?id=<?=$list[$i]["id"]?>" class="button">Liste de dépense</a></td>
+                        <td><a href="controller-absence.php?id=<?=$list[$i]["id"]?>" class="button">Déclarer</a></td>
                     </tr>
 
                  <?php   } ?>

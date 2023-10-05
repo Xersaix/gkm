@@ -17,25 +17,15 @@
 
                 </div>
             </div>
-            <!-- Type de frais -->
+
             <div class="field">
-                <label class="label">Type de document <span class="has-text-danger">
-                        <?= $errors["type"] ?? "" ?>
+  <label class="label">Titre <span class="has-text-danger">
+                        <?= $errors["title"] ?? "" ?>
                     </span></label>
-                <div class="control">
-                    <div class="select">
-                        <select name="file_type">
-                            <?php foreach($types as $type) { ?>
-                            <option value="<?= $type['id'] ?>">
-                                <?= $type["name"] ?>
-                            </option>
-
-                            <?php  }  ?>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
+  <div class="control">
+    <input class="input" type="text" placeholder="Titre du document" name="title">
+  </div>
+</div>
 
             <!-- File -->
             <div id="file-js-example" class="file is-info has-name mt-5">

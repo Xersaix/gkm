@@ -54,13 +54,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         {
             Worker::setExpenseState($_POST["refuse"],3);
             Worker::setExpenseDate($_POST["refuse"],date("Y-m-d"),$text);
-            Worker::newNotif($_GET["id"],date("Y-m-d"),"Frais","bi bi-x has-text-danger","Remboursement de frais refuser.");
+            Worker::newNotif($_GET["id"],date('Y-m-d H:i:s'),"Frais","bi bi-x has-text-danger","Remboursement de frais refuser.");
             header('Location: controller-admin-expense.php?id='.$_GET["id"]);
         }else
         {
             Worker::setExpenseState($_POST["valid"],1);
             Worker::setExpenseDate($_POST["valid"],date("Y-m-d"),null);
-            Worker::newNotif($_GET["id"],date("Y-m-d"),"Frais","bi bi-check has-text-success","Remboursement de frais accepter.");
+            Worker::newNotif($_GET["id"],date('Y-m-d H:i:s'),"Frais","bi bi-check has-text-success","Remboursement de frais accepter.");
             header('Location: controller-admin-expense.php?id='.$_GET["id"]);
         }
     }

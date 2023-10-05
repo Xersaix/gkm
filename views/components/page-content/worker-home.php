@@ -1,7 +1,7 @@
-<div class="columns is-flex  is-flex-direction-row is-flex-wrap-wrap is-align-items-stretch">
+<div class="columns  is-flex  is-flex-direction-row is-flex-wrap-wrap is-align-items-stretch">
 
-    <div class="column is-5">
-        <div class="columns is-flex  is-flex-direction-row  is-align-items-stretch is-flex-wrap-wrap">
+    <div class="column is-5 is-12-touch">
+        <div class="columns  is-flex  is-flex-direction-row  is-align-items-stretch is-flex-wrap-wrap">
 
 
             <!-- Total number of holiday -->
@@ -111,7 +111,7 @@
     </div>
 
     <!-- Last file liste -->
-    <div class="column custom-show file-list-box is-half pt-5 ml-3 is-flex-shrink-2 mr-2 is-12-mobile box is-flex is-flex-direction-row is-align-items-center is-flex-wrap-wrap">
+    <div class="column is-12-touch  custom-show file-list-box is-half pt-5 ml-3 is-flex-shrink-2 mr-2 is-12-mobile box is-flex is-flex-direction-row is-align-items-center is-flex-wrap-wrap">
     
         <div class=" file-list">
             <p class="menu-label">

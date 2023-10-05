@@ -41,7 +41,7 @@
         <!-- Dropdown selectable content -->
         <span class="aside-dropdown-container <?= $page_name["holiday"] ?? "" ?>">
 
-            <p class="is-size-7"> <i class="bi bi-calendar-event mr-3 is-size-6"></i> Mes Congées</p>
+            <p class="is-size-7"> <i class="bi bi-calendar-event mr-3 is-size-6"></i> Mes Congés</p>
             <i class="bi bi-chevron-down"></i>
         </span>
         <!-- Dropdown content -->
@@ -71,37 +71,46 @@
     <p class="has-text-white ml-4 my-5">Compte secrétaire</p>
 
     <div class="aside-link <?= $page_name["worker-list"] ?? "" ?>">
-        <a href="controller-worker-list.php" class="is-size-7"><i class="bi bi-people-fill mr-3 is-size-6"></i>Liste des employées</a>
+        <a href="controller-worker-list.php" class="is-size-7"><i class="bi bi-people-fill mr-3 is-size-6"></i>Liste des employés</a>
     </div>
 
     <div class="aside-link <?= $page_name["add-worker"] ?? "" ?>">
-        <a href="controller-add-worker.php" class="is-size-7"><i class="bi bi-plus-lg mr-3 is-size-6"></i>Ajouter un employée</a>
+        <a href="controller-add-worker.php" class="is-size-7"><i class="bi bi-plus-lg mr-3 is-size-6"></i>Ajouter un employé</a>
     </div>
     
     <div class="aside-link <?= $page_name["all-holiday"] ?? "" ?>">
         <a href="controller-all-holiday.php?day=<?= date("d")?>&month=<?= date("m")?>&year=<?= date("y")?>" class="is-size-7"><i class="bi bi-calendar-event mr-3 is-size-6"></i>Congée des employés</a>
     </div>
 
+
+    
+
     <?php } ?>
     <!-- Separation -->
     <?php if($_SESSION["id_account_type"] == 1){ ?>
     <p class="has-text-white ml-4 my-5">Compte administrateur</p>
 
-    <div class="aside-link">
-        <a href="" class="is-size-7"><i class="bi bi-calendar-event mr-3 is-size-6"></i>Mes Congées</a>
-    </div>
+    <!-- Aside dropdown -->
+    <div class="aside-dropdown ">
+        <!-- Dropdown selectable content -->
+        <span class="aside-dropdown-container <?= $page_name["admin_file"] ?? "" ?>">
 
-    <div class="aside-link">
-        <a href="" class="is-size-7"><i class="bi bi-files mr-3 is-size-6"></i>Mes documents</a>
+            <p class="is-size-7"> <i class="bi bi-file-earmark-text-fill mr-3 is-size-6"></i>Document d'entreprise</p>
+            <i class="bi bi-chevron-down"></i>
+        </span>
+        <!-- Dropdown content -->
+        <span class="aside-dropdown-content">
+            <div class="aside-link">
+                <a href="controller-file-a.php" class="is-size-7"><i class="bi bi-arrow-right mr-3"></i>Documents</a>
+            </div>
+            <div class="aside-link">
+                <a href="controller-add-file-a.php" class="is-size-7"><i class="bi bi-arrow-right mr-3"></i>Ajouter un document</a>
+            </div>
+        </span>
     </div>
+    <!-- End of the first Dropdown -->
 
-    <div class="aside-link">
-        <a href="" class="is-size-7"><i class="bi bi-envelope-fill mr-3 is-size-6"></i>Courrier</a>
-    </div>
 
-    <div class="aside-link">
-        <a href="" class="is-size-7"><i class="bi bi-bell mr-3 is-size-6"></i>Notification</a>
-    </div>
     <?php } ?>
     <div class="aside-link">
         <a href="controller-disconnect.php" class="is-size-6"><i class="bi bi-box-arrow-right my-5 mr-3 is-size-6"></i>Se déconnecter</a>

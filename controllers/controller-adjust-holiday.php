@@ -62,12 +62,12 @@ if(count($errors) == 0)
     if($plus_minus)
     {
         Worker::plusHoliday($_GET["id"],$number);
-        Worker::newNotif($_GET["id"],date("Y-m-d"),"Congé","bi bi-plus has-text-info","Vos congés ont été ajustés: +".$number);
+        Worker::newNotif($_GET["id"],date('Y-m-d H:i:s'),"Congé","bi bi-plus has-text-info","Vos congés ont été ajustés: +".$number);
 
     }else if(!$plus_minus)
     {
         Worker::subtractHoliday($_GET["id"],$number);
-        Worker::newNotif($_GET["id"],date("Y-m-d"),"Congé","bi bi-dash has-text-danger","Vos congés ont été ajustés: -".$number);
+        Worker::newNotif($_GET["id"],date('Y-m-d H:i:s'),"Congé","bi bi-dash has-text-danger","Vos congés ont été ajustés: -".$number);
     }
     header('Location: controller-worker-list.php');
 }

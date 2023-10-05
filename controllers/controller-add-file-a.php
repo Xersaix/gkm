@@ -6,7 +6,7 @@ include_once "../models/Worker.php";
 
 
 $page_name = [];
-$page_name["worker-list"] = "selected-aside";
+$page_name["admin_file"] = "selected-aside";
 $connected = false;
 if(!isset($_SESSION["id"])){
     $connected = false;
@@ -16,19 +16,13 @@ if(!isset($_SESSION["id"])){
     $connected = true;
 }
 
-$file_type = "";
+
 $errors = [];
 $date = "";
 $file = "";
+$title = "";
 $dateRegex = '/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/'; 
-$types = FileType::getAllType();
-$types_checker = array();
 
-// Get all the type and initailize the type checker.
-foreach ($types as $row) {
-    array_push($types_checker,$row["id"]);
-
-}
 
 
 if($_SERVER["REQUEST_METHOD"] == "POST")
@@ -46,17 +40,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             $errors["date"] = "Date invalide";
         }
     }
-
-    if(isset($_POST["file_type"]))
+    if(isset($_POST["title"]))
     {
-        $file_type = htmlspecialchars($_POST["file_type"]);
-        if(empty($file_type))
+        $title = htmlspecialchars($_POST["title"]);
+        if(empty($title))
         {
-            $errors["type"] = "Champs obligatoire";
-        } else if (!in_array($file_type, $types_checker)) {
-            $errors['type'] = 'Petit Malin ';
+            
+            $errors["title"] = "Champs obligatoire";
+
         }
+
     }
+
+
 
     if(isset($_FILES["file"]))
     {
@@ -93,22 +89,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 {
     $file_path = "";
 
-    if($file_type == 1)
-    {
-        $file_path = '../assets/img/uploads/payslip/'.$_GET["id"] ;
-    }
-    else
-    {
-        $file_path = '../assets/img/uploads/file/'.$_GET["id"] ;
-    }
-    
-  
-    // Checking whether file exists or not
-    if (!file_exists($file_path)) {
-      
-        // Create a new file or direcotry
-        mkdir($file_path, 0777, true);
-    }
+        $file_path = '../assets/img/uploads/society' ;
 
     $ext = "";
     switch($finfo->file($_FILES["file"]["tmp_name"]))
@@ -139,20 +120,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     }
 
 
-    $data = uniqid($_GET["id"]);
+    $data = uniqid();
     move_uploaded_file($_FILES["file"]["tmp_name"],$file_path."/".$data."{$ext}");
-    Worker::addFile($_GET["id"],$data."{$ext}",$date,$file_type);
-    if($file_type == 1)
-    {
-        Worker::newNotif($_GET["id"],date('Y-m-d H:i:s'),"Fiche de paie","bi bi-file-plus has-text-info","Vous avez reçu une nouvelle fiche de paie.");
-    }
-    else
-    {
-        Worker::newNotif($_GET["id"],date('Y-m-d H:i:s'),"Document","bi bi-file-plus has-text-info","Vous avez reçu un nouveau document.");
-    }
-    header('Location: controller-worker-list.php');
+    Worker::addSocietyFile($data."{$ext}",$date,$title);
+
+    header('Location: controller-file-a.php');
 }
 }
 
-include "../views/add-file.php";
+include "../views/add-file-a.php";
 ?>

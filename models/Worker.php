@@ -84,6 +84,25 @@ public static function getMonthHoliday($id,$date)
 
 }
 
+
+public static function getMonthAbsense($id,$date)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("SELECT *
+    FROM absence
+    WHERE worker_id = :id
+      AND DATE_FORMAT(date, '%y-%m') = :date ;
+    ");
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':date', $date);
+    $stmt->execute();
+    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $result =  $stmt->fetchAll();
+    $conn = null;
+    return $result;
+
+}
+
 public static function getWorkerExpense($id)
 {
     $conn = Database::connectDatabase();
@@ -130,6 +149,17 @@ public static function addHoliday($id,$fullday,$date)
     $conn = null;
 }
 
+public static function addAbsence($id,$fullday,$date)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("INSERT INTO absence (date, FullDay, worker_id) VALUES (:date , :fullday , :id ) ");
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':fullday', $fullday);
+    $stmt->bindParam(':date', $date);
+    $stmt->execute();
+    $conn = null;
+}
+
 public static function getAllWorker()
 {
     $conn = Database::connectDatabase();
@@ -150,6 +180,18 @@ public static function addFile($id,$file,$date,$type)
     $stmt->bindParam(':file', $file);
     $stmt->bindParam(':date', $date);
     $stmt->bindParam(':type', $type);
+    $stmt->execute();
+    $conn = null;
+
+}
+
+public static function addSocietyFile($file,$date,$title)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("INSERT INTO `society_file`(`image`, `date`,`title`) VALUES ( :file , :date , :title )");
+    $stmt->bindParam(':file', $file);
+    $stmt->bindParam(':date', $date);
+    $stmt->bindParam(':title', $title);
     $stmt->execute();
     $conn = null;
 
@@ -291,6 +333,18 @@ public static function get4NewNotif($id)
 $conn = Database::connectDatabase();
 $stmt = $conn->prepare("SELECT * FROM notification WHERE ID_Worker = :id AND seen = 0 ORDER BY date DESC LIMIT 4");
 $stmt->bindParam(':id', $id);
+$stmt->execute();
+$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+$result =  $stmt->fetchAll();
+$conn = null;
+return $result;
+
+}
+
+public static function getAFile()
+{
+$conn = Database::connectDatabase();
+$stmt = $conn->prepare("SELECT * FROM society_file");
 $stmt->execute();
 $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 $result =  $stmt->fetchAll();

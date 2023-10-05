@@ -1,6 +1,9 @@
 <div class="columns is-flex is-justify-content-center">
 
     <div class="column is-5">
+    <div class="three">
+  <h1>Ajout d'employé</h1>
+</div>
         <form action="" method="POST">
 
             <!-- Firstname -->

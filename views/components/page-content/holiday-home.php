@@ -12,6 +12,12 @@
 <div class="three">
   <h1>Calendrier des demandes</h1>
 </div>
+<div class="tags">
+  <span class="tag is-success mx-1">Congé accepter</span>
+  <span class="tag is-warning  mx-1">Congé en attente</span>
+  <span class="tag is-danger  mx-1">Congé refuser</span>
+
+</div>
 <div class="table-container my-3">
             <table class="table is-bordered  is-narrow is-hoverable is-fullwidth">
                 <thead>

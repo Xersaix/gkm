@@ -58,7 +58,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
   $_SESSION["lastname"] = $result["lastname"];
   $_SESSION["firstname"] = $result["firstname"];
   $connected = true;
-  Worker::newNotif($_SESSION["id"],date("Y-m-d"),"Connection","bi bi-person-check has-text-success","Nouvelle connection");
+  Worker::newNotif($_SESSION["id"],date('Y-m-d H:i:s'),"Connection","bi bi-person-check has-text-success","Nouvelle connection");
   header("Location: controller-home.php");
 
 }

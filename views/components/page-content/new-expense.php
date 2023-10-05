@@ -1,6 +1,9 @@
 <div class="columns is-flex is-justify-content-center">
 
     <div class="column is-half">
+    <div class="three">
+  <h1>Nouvelle dépense</h1>
+</div>
         <form action="" method="POST" enctype="multipart/form-data">
 
             <!-- Date de paiment -->

@@ -12,6 +12,14 @@
 <div class="three">
   <h1>Calendrier des demandes</h1>
 </div>
+<div class="tags">
+  <span class="tag is-success mx-1">Congé accepter</span>
+  <span class="tag is-warning  mx-1">Congé en attente</span>
+  <span class="tag is-danger  mx-1">Congé refuser</span>
+  <span class="tag is-primary  mx-1">Absent</span>
+  <span class="tag is-primary  mx-1"><i class="bi bi-dash-circle-dotted mr-2"></i>Demi-journée</span>
+  <span class="tag is-primary  mx-1"><i class="bi bi-dash-circle mr-2"></i>Journée</span>
+</div>
 <div class="table-container my-3">
             <table class="table is-bordered  is-narrow is-hoverable is-fullwidth">
                 <thead>
@@ -31,9 +39,9 @@
                         
                     </tr>
                 </thead>
-                <tbody>
+                <tbody >
 
-                <tr style="border:none;">
+                <tr style="border:none;" >
                         
                         <td style="border:none;">Employé</td>
                         <!-- Add tasks for each day of the month -->
@@ -45,12 +53,13 @@
                     <?php for ($i=0; $i < count($worker_list) ; $i++) { 
                         
                         $month_holiday = Worker::getMonthHoliday($worker_list[$i]["id"],$_GET["year"]."-".$_GET["month"]);
+                        $month_absense = Worker::getMonthAbsense($worker_list[$i]["id"],$_GET["year"]."-".$_GET["month"]);
                         
                         
                         ?>
                        
                     
-                    <tr>
+                    <tr >
                         
                         <td><?=$worker_list[$i]["firstname"] ?> <?=$worker_list[$i]["lastname"] ?></td>
                         <!-- Add tasks for each day of the month -->
@@ -63,15 +72,33 @@
                             }
 
                             ?>
-                               <td class="<?= ($date1 < $date2) ? 'has-background-info' : "" ?> <?= ($day_of_week == "Sun" || $day_of_week == "Sat") ? 'has-background-grey-light' : "" ?><?=(is_int(array_search($date1->format("Y-m-d"), array_column($month_holiday, 'date'))) && $month_holiday[array_search($date1->format("Y-m-d"), array_column($month_holiday, "date"))]["ID_status"] == 2 ) ? "has-background-warning" : "" ?> 
-                               <?=(is_int(array_search($date1->format("Y-m-d"), array_column($month_holiday, 'date'))) && $month_holiday[array_search($date1->format("Y-m-d"), array_column($month_holiday, "date"))]["ID_status"] == 3 ) ? "has-background-danger" : "" ?>
-                               <?=(is_int(array_search($date1->format("Y-m-d"), array_column($month_holiday, 'date'))) && $month_holiday[array_search($date1->format("Y-m-d"), array_column($month_holiday, "date"))]["ID_status"] == 1 ) ? "has-background-success" : "" ?>">
+                               <td class=" has-text-centered
+                               
+                               <?= ($date1 < $date2 && !is_int(array_search($date1->format("Y-m-d"), array_column($month_absense, 'date'))) ) ? 'has-background-info' : "" ?> <?= ($day_of_week == "Sun" || $day_of_week == "Sat") ? 'has-background-grey-light' : "" ?>
+                                <?=(is_int(array_search($date1->format("Y-m-d"), array_column($month_holiday, 'date'))) && $month_holiday[array_search($date1->format("Y-m-d"), array_column($month_holiday, "date"))]["ID_status"] == 2 ) ? "has-background-warning" : "" ?> 
+                                <?=(is_int(array_search($date1->format("Y-m-d"), array_column($month_holiday, 'date'))) && $month_holiday[array_search($date1->format("Y-m-d"), array_column($month_holiday, "date"))]["ID_status"] == 3 ) ? "has-background-danger" : "" ?>
+                                <?=(is_int(array_search($date1->format("Y-m-d"), array_column($month_holiday, 'date'))) && $month_holiday[array_search($date1->format("Y-m-d"), array_column($month_holiday, "date"))]["ID_status"] == 1 ) ? "has-background-success" : "" ?>
+                                <?=(is_int(array_search($date1->format("Y-m-d"), array_column($month_absense, 'date')))) ? "has-background-primary" : "" ?>
+                                
+                                ">
+                                <div class="span">
+                                <?php if(is_int(array_search($date1->format("Y-m-d"), array_column($month_absense, 'date'))) && $month_absense[array_search($date1->format("Y-m-d"), array_column($month_absense, "date"))]["Fullday"] == 0){ ?>
+
+                                    <i class="bi bi-dash-circle-dotted  p-0 m-0 is-size-5 has-text-weight-bold"></i>
+                                
+                                <?php  }elseif (is_int(array_search($date1->format("Y-m-d"), array_column($month_absense, 'date'))) && $month_absense[array_search($date1->format("Y-m-d"), array_column($month_absense, "date"))]["Fullday"] == 1) {  ?>
+
+                                <i class="bi bi-dash-circle  p-0 m-0 is-size-5 has-text-weight-bold"></i>
+                                <?php } ?>
+
                             <?php if(is_int(array_search($date1->format("Y-m-d"), array_column($month_holiday, 'date')))){ ?>
                                 
                                 <button class="js-modal-trigger is-clickable mt-3" data-target="modal-js-<?=$day ?>">
                                    <i class="bi bi-info-square  p-0 m-0 is-size-5 has-text-weight-bold"></i>
                                     </button>
-                                
+
+
+
                                 <div id="modal-js-<?=$day ?>" class="modal">
                                     <div class="modal-background"></div>
 
