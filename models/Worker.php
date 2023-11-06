@@ -65,6 +65,19 @@ public static function getWorkerByEmail($email)
     return $result;
 
 }
+public static function getWorkerById($id)
+{
+
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("SELECT * FROM `worker` where id = :id");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $result =  $stmt->fetch();
+    $conn = null;
+    return $result;
+
+}
 
 public static function getMonthHoliday($id,$date)
 {
@@ -373,6 +386,51 @@ public static function newNotif($id,$date,$title,$icon,$text)
     $stmt->bindParam(':text', $text);
     $stmt->execute();
     $conn = null;
+}
+
+public static function newForgot($email,$key,$date)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("INSERT INTO `password_reset_temp` (`email`, `key`, `expDate`) VALUES (:email, :key, :expDate) ");
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':key', $key);
+    $stmt->bindParam(':expDate', $date);
+    $stmt->execute();
+    $conn = null;
+}
+
+
+public static function getResetKey($email,$key)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("SELECT * FROM `password_reset_temp` WHERE `key`= :key and `email`= :email");
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':key', $key);
+    $stmt->execute();
+    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $result =  $stmt->fetch();
+    $conn = null;
+    return $result;
+}
+
+public static function changePassword($mdp,$email)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("UPDATE worker SET password = :mdp WHERE email = :email ");
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':mdp', $mdp);
+    $stmt->execute();
+    $conn = null;
+
+}
+public static function deleteKey($email)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("DELETE FROM `password_reset_temp` WHERE email = :email ");
+    $stmt->bindParam(':email', $email);
+    $stmt->execute();
+    $conn = null;
+
 }
 
 }

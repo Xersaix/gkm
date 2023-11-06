@@ -16,6 +16,10 @@ if(!isset($_SESSION["id"])){
     $connected = true;
 }
 $expense = Expense::getExpense($_GET["id"]);
+if($expense['ID_Worker'] != $_SESSION["id"])
+{
+    header('Location: controller-expense.php');
+}
 $expense_date = "";
 $expense_type = "";
 $expense_reason = "";

@@ -4,11 +4,9 @@ var aside_overlay = document.getElementById("aside-overlay");
 var aside_menu_state = false;
 var aside_dropdown = document.getElementsByClassName("aside-dropdown-container");
 var aside_dropdown_content = document.getElementsByClassName("aside-dropdown-content");
-
-
-
 burger_button.addEventListener("click",function() {
 
+console.log("click");
 
 aside_menu.style.visibility = "visible";
 aside_overlay.style.visibility = "visible";
@@ -29,28 +27,14 @@ aside_overlay.onclick = function(event) {
 // When the window is resized change the state of the aside and overlay
 window.addEventListener("resize",function(){
 
-    if(this.window.screen.width >1036)
+    if(this.window.screen.width >768)
     {
         aside_menu.style.visibility = "visible";
         aside_overlay.style.visibility = "hidden";
-        aside_menu_state = false;
     }else{
-        
         aside_menu.style.visibility = "hidden";
         aside_overlay.style.visibility = "hidden";
     }
-    
-    
-
-    if(aside_menu.style.position == "absolute")
-    {   
-        
-        aside_menu.style.visibility = "hidden";
-        aside_overlay.style.visibility = "visible";
-    }
-
-
-    
 })
 
 // Dropdown menu of the aside menu

@@ -63,7 +63,10 @@
     </div>
 
     <div class="aside-link <?= $page_name["file"] ?? "" ?>">
-        <a href="controller-file.php" class="is-size-7"><i class="bi bi-file-earmark-text-fill mr-3 is-size-6"></i>Documents</a>
+        <a href="controller-file.php" class="is-size-7"><i class="bi bi-file-earmark-text mr-3 is-size-6"></i>Documents</a>
+    </div>
+    <div class="aside-link <?= $page_name["user"] ?? "" ?>">
+        <a href="controller-user-info.php" class="is-size-7"><i class="bi bi-person-vcard mr-3 is-size-6"></i>Informations personnelles</a>
     </div>
 
     <?php if($_SESSION["id_account_type"] != 3){ ?>
@@ -71,7 +74,7 @@
     <p class="has-text-white ml-4 my-5">Compte secrétaire</p>
 
     <div class="aside-link <?= $page_name["worker-list"] ?? "" ?>">
-        <a href="controller-worker-list.php" class="is-size-7"><i class="bi bi-people-fill mr-3 is-size-6"></i>Liste des employés</a>
+        <a href="controller-worker-list.php" class="is-size-7"><i class="bi bi-people mr-3 is-size-6"></i>Liste des employés</a>
     </div>
 
     <div class="aside-link <?= $page_name["add-worker"] ?? "" ?>">
@@ -95,7 +98,7 @@
         <!-- Dropdown selectable content -->
         <span class="aside-dropdown-container <?= $page_name["admin_file"] ?? "" ?>">
 
-            <p class="is-size-7"> <i class="bi bi-file-earmark-text-fill mr-3 is-size-6"></i>Document d'entreprise</p>
+            <p class="is-size-7"> <i class="bi bi-file-earmark-text mr-3 is-size-6"></i>Document d'entreprise</p>
             <i class="bi bi-chevron-down"></i>
         </span>
         <!-- Dropdown content -->

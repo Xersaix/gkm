@@ -157,22 +157,15 @@ aside .aside-top
 
 
 
-@media only screen and (max-width: 1036px) {
-    .viewport #aside-menu {
+@media only screen and (max-width: 769px) {
+    .viewport aside {
         position: absolute;
         top: 0%;
         left: 0%;
         width: 50%;
         visibility: hidden;
     }
-
-
 }
-
-
-
-
-
 
 /* Content of the rest of the page */
 .viewport .content {
@@ -229,7 +222,7 @@ aside .aside-top
     /* Rounded border */
     border-radius: 50%;
     height: 3rem;
-    aspect-ratio: 1/1;
+    width: 3rem;
 }
 .initial-avatar-nav {
     /* Center the content */
@@ -270,6 +263,11 @@ aside .aside-top
     border:0.1px solid rgba(128, 128, 128, 0.4);
   }
   
+  .dropdown-content .columns
+  {
+      width:fit-content;
+  }
+  
   /* Display the dropdown content to the right by default */
   .dropdown:hover .dropdown-content {
     display: flex;
@@ -288,6 +286,11 @@ aside .aside-top
     position: relative;
     border-top: 0.1px solid rgba(128, 128, 128, 0.516);
 
+}
+
+.notif .columns
+{
+    width:100%;
 }
 .notif .close-motif{
     display: inline-block;
