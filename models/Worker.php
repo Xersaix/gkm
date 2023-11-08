@@ -354,6 +354,19 @@ return $result;
 
 }
 
+public static function getNotif($id)
+{
+$conn = Database::connectDatabase();
+$stmt = $conn->prepare("SELECT * FROM notification WHERE ID_Worker = :id ORDER BY date DESC");
+$stmt->bindParam(':id', $id);
+$stmt->execute();
+$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+$result =  $stmt->fetchAll();
+$conn = null;
+return $result;
+
+}
+
 public static function getAFile()
 {
 $conn = Database::connectDatabase();

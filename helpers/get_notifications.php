@@ -2,7 +2,9 @@
 include_once "../config.php";
 include_once "../models/Worker.php";
 
-$newest_notif = Worker::get4NewNotif(1);
+session_start();
+
+$newest_notif = Worker::get4NewNotif($_SESSION["id"]);
 
 function get_time_ago( $time )
 {

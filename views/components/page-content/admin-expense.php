@@ -77,7 +77,7 @@ foreach ($list as  $value) { ?>
                     <th>Montant</th>
                     <th>Status</th>
                     <th>Justificatif</th>
-                    <th></th>
+                    <th>Informations</th>
                 </tr>
             </thead>
             <tbody class="">
@@ -93,34 +93,33 @@ foreach ($list as  $value) { ?>
 
                 <tr class="has-text-centered">
                     <td>
-                        <?= $value["payment_date"] ?>
+                    <p class="mt-2">    <?= date("d/m/Y",strtotime($value["payment_date"])) ?> </p></td>
+                    <td>
+                    <p class="mt-2"> <?= $value["expense_type"] ?> </p>
                     </td>
                     <td>
-                        <?= $value["expense_type"] ?>
+                    <p class="mt-2">    <?= mb_strimwidth(($value["reason"]) ? $value["reason"] : "" ,0,10,'...') ?></p>
                     </td>
                     <td>
-                        <?= mb_strimwidth(($value["reason"]) ? $value["reason"] : "" ,0,10,'...') ?>
-                    </td>
-                    <td>
-                        <?= $value["payment_ttc"] ?> €
+                    <p class="mt-2">  <?= $value["payment_ttc"] ?> € </p>
                     </td>
 
                     <?php
                             if($value["status"] == "Accepté")
                             {
-                                echo '<td class="has-text-centered"><span class="tag is-success mt-3 is-medium">Accepté</span></td>';
+                                echo '<td class="has-text-centered"><span class="tag is-success mt-2 is-medium">Accepté</span></td>';
                             }
                             else if($value["status"] == "En attente")
                             {
-                                echo '<td class="has-text-centered"><span class="tag is-warning mt-3 is-medium"> En attente </span></td>';
+                                echo '<td class="has-text-centered"><span class="tag is-warning mt-2 is-medium"> En attente </span></td>';
                             }
                             else if($value["status"] == "Refusé")
                             {
-                                echo '<td class="has-text-centered"><span class="tag is-danger mt-3 is-medium tooltip">Refusé</span></td>';
+                                echo '<td class="has-text-centered"><span class="tag is-danger mt-2 is-medium tooltip">Refusé</span></td>';
                             }
                             ?>
-                    <td class=""><a href="<?=$base64ImageSrc ?>" class="button" data-fancybox data-caption="<?= $imgData ?>">Voir</a></span></td>
-                    <td class="has-text-centered p-2">
+                    <td class=""><a href="<?=$base64ImageSrc ?>" class="button mt-1" data-fancybox data-caption="<?= $imgData ?>">Voir</a></span></td>
+                    <td class="has-text-centered p-2 ">
                         <?php if ($value["status"] == "En attente") { ?>
 
                         <button class="js-modal-trigger button " data-target="<?= $value['expense_id'] ?>">

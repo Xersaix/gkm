@@ -60,7 +60,7 @@ foreach ($list as  $value) { ?>
 </div>
 <?= ($list[0]["status"] == null || count($list) == 0) ? "Aucune dépense" : "" ?>
         <div class="table-container <?= ($list[0]["status"] == null || count($list) == 0) ? "is-hidden" : "" ?>">
-            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth has-text-centered">
                 <thead>
                     <tr>
                         <th>Date</th>
@@ -69,7 +69,7 @@ foreach ($list as  $value) { ?>
                         <th>Montant</th>
                         <th>Status</th>
                         <th>Justificatif</th>
-                        <th></th>
+                        <th>Informations</th>
                     </tr>
                 </thead>
                 <tbody class="">
@@ -84,26 +84,26 @@ foreach ($list as  $value) { ?>
                   ?>
 
                     <tr class="has-text-centered">
-                        <td><?= $value["payment_date"] ?> </td>
-                        <td><?= $value["expense_type"] ?></td>
-                        <td><?= mb_strimwidth($value["reason"],0,10,'...') ?></td>
-                        <td><?= $value["payment_ttc"] ?> €</td>
+                        <td><p class="mt-3"><?= date("d/m/Y",strtotime($value["payment_date"])) ?> </p></td>
+                        <td><p class="mt-3"> <?= $value["expense_type"] ?></p></td>
+                        <td><p class="mt-3"><?= mb_strimwidth($value["reason"],0,10,'...') ?></p></td>
+                        <td><p class="mt-3"><?= $value["payment_ttc"] ?> €</p></td>
 
                         <?php
                         if($value["status"] == "Accepté")
                         {
-                            echo '<td class="has-text-centered"><span class="tag is-success mt-3 is-medium">Accepté</span></td>';
+                            echo '<td class="has-text-centered"><span class="tag is-success mt-2 is-medium">Accepté</span></td>';
                         }
                         else if($value["status"] == "En attente")
                         {
-                            echo '<td class="has-text-centered"><span class="tag is-warning mt-3 is-medium"> En attente </span></td>';
+                            echo '<td class="has-text-centered"><span class="tag is-warning mt-2 is-medium"> En attente </span></td>';
                         }
                         else if($value["status"] == "Refusé")
                         {
-                          echo '<td class="has-text-centered"><span class="tag is-danger mt-3 is-medium tooltip">Refusé </span></td>';
+                          echo '<td class="has-text-centered"><span class="tag is-danger mt-2 is-medium tooltip">Refusé </span></td>';
                         }
                         ?>
-                        <td class=""><a href="<?=$base64ImageSrc ?>" class="button" data-fancybox data-caption="<?= $imgData ?>">Voir</a></span></td>
+                        <td class=""><a href="<?=$base64ImageSrc ?>" class="button mt-1" data-fancybox data-caption="<?= $imgData ?>">Voir</a></span></td>
                         <td class="has-text-centered p-2">
                 <?php if ($value["status"] == "En attente") { ?> 
                 <a class="button is-success has-text-white" href="controller-update-expense.php?id=<?= $value['expense_id'] ?>">
@@ -116,7 +116,7 @@ foreach ($list as  $value) { ?>
                 
 
               <?php } ?>
-              <button class="js-modal-trigger button mt-1" data-target="info-<?= $value["expense_id"]  ?>">
+              <button class="js-modal-trigger button  " data-target="info-<?= $value["expense_id"]  ?>">
               <i class="bi bi-info-circle"></i>
               </button>
               </td>

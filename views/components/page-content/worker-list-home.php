@@ -14,6 +14,7 @@
                         <th>Ajustement de congée</th>
                         <th>Frais</th>
                         <th>Abscence</th>
+                        <th>Abscence</th>
                     </tr>
                 </thead>
                 <tbody class="has-text-centered">
@@ -21,12 +22,13 @@
                     <?php for ($i=0; $i < count($list) ; $i++) { ?>
 
                     <tr>
-                        <td><?=$list[$i]["firstname"]?> <?=$list[$i]["lastname"]?></td>
-                        <td><?=$list[$i]["holiday_count"]?> jours</td>
+                        <td><p class="mt-2"><?=$list[$i]["firstname"]?> <?=$list[$i]["lastname"]?></p></td>
+                        <td><p class="mt-2"><?=$list[$i]["holiday_count"]?> jours</p></td>
                         <td><a href="controller-add-file.php?id=<?=$list[$i]["id"]?>" class="button"><i class="bi bi-plus-lg"></i></a></td>
                         
                         <td><a href="controller-adjust-holiday.php?id=<?=$list[$i]["id"]?>" class="button">Ajuster</a></td>
                         <td><a href="controller-admin-expense.php?id=<?=$list[$i]["id"]?>" class="button">Liste de dépense</a></td>
+                        <td><a href="controller-absence.php?id=<?=$list[$i]["id"]?>" class="button">Déclarer</a></td>
                         <td><a href="controller-absence.php?id=<?=$list[$i]["id"]?>" class="button">Déclarer</a></td>
                     </tr>
 
