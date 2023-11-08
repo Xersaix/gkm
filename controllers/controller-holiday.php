@@ -14,6 +14,8 @@ if(!isset($_SESSION["id"])){
 if($_SERVER["REQUEST_METHOD"] == "GET")
 {
 
+    if(isset($_GET["month"]) || isset($_GET["day"]) || isset($_GET["year"]))
+    {
 $day_in_month = cal_days_in_month(CAL_GREGORIAN, $_GET["month"], $_GET["year"]);
 $currentDate = date("d-m-y");
 $selected_date = $_GET["day"]."-".$_GET["month"]."-".$_GET["year"];
@@ -23,9 +25,13 @@ $format = "d-m-y";
 $date2  = \DateTime::createFromFormat($format, $currentDate);
 
 $month_holiday = Worker::getMonthHoliday($_SESSION["id"],$_GET["year"]."-".$_GET["month"]);
+    }else{
 
-// var_dump(array_search('2023-09-13', array_column($month_holiday, 'date')));
-// var_dump($month_holiday);
+        header('Location: controller-home.php');
+    }
+
+
+
 }
 
 

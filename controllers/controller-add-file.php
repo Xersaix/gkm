@@ -16,6 +16,11 @@ if(!isset($_SESSION["id"])){
     $connected = true;
 }
 
+if(!isset($_GET["id"]))
+{
+    header('Location: controller-worker-list.php');
+}
+
 $file_type = "";
 $errors = [];
 $date = "";

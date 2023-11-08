@@ -4,7 +4,7 @@
 <aside class="pb-5" id="aside-menu">
     <!-- In Aside top of the menu -->
     <div class="aside-top has-text-white">
-        <div class="initial-avatar ml-5 mr-3"><p><?= $_SESSION["firstname"][0]?> <?= $_SESSION["lastname"][0]?></p></div>
+        <div class="initial-avatar ml-5 mr-5"><p><?= $_SESSION["firstname"][0]?> <?= $_SESSION["lastname"][0]?></p></div>
         <p class="is-size-6 is-size-7-mobile"> <?= $_SESSION["firstname"]?> <?= $_SESSION["lastname"]?></p>
     </div>
 

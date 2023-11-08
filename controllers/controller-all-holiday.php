@@ -11,6 +11,12 @@ if(!isset($_SESSION["id"])){
 }else{
     $connected = true;
 }
+
+if(!isset($_GET["day"]) || !isset($_GET["month"]) || !isset($_GET["year"]))
+{
+    header('Location: controller-home.php');
+}
+
 if($_SERVER["REQUEST_METHOD"] == "GET")
 {
 $worker_list = Worker::getAllWorker();

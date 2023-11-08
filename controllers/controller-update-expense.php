@@ -15,6 +15,11 @@ if(!isset($_SESSION["id"])){
 }else{
     $connected = true;
 }
+
+if(!isset($_GET["id"]))
+{
+    header('Location: controller-expense.php');
+}
 $expense = Expense::getExpense($_GET["id"]);
 if($expense['ID_Worker'] != $_SESSION["id"])
 {
@@ -37,6 +42,7 @@ foreach ($types as $row) {
     array_push($types_checker,$row["id"]);
 
 }
+
 
 // Check if a Post method exist
 if($_SERVER["REQUEST_METHOD"] == "POST")
@@ -127,9 +133,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
        }
 
        }
-    }else{
-
-
     }
 
 if(count($errors) == 0)

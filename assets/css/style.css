@@ -147,8 +147,8 @@ aside .aside-top
 /* viewport aside overlay */
 .viewport .aside-overlay {
     position: absolute;
-    left: 50%;
-    width: 50%;
+
+    width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.614);
     visibility: hidden;
@@ -164,6 +164,18 @@ aside .aside-top
         left: 0%;
         width: 50%;
         visibility: hidden;
+    }
+}
+
+.hidden-dekstop{
+
+    visibility:hidden;
+}
+
+@media only screen and (max-width: 769px) {
+    .hidden-dekstop{
+
+        visibility: visible;
     }
 }
 
@@ -221,8 +233,8 @@ aside .aside-top
 
     /* Rounded border */
     border-radius: 50%;
-    height: 3rem;
-    width: 3rem;
+    height: 2.5rem;
+    aspect-ratio: 1/1;
 }
 .initial-avatar-nav {
     /* Center the content */
@@ -265,7 +277,7 @@ aside .aside-top
   
   .dropdown-content .columns
   {
-      width:fit-content;
+      width:100%;
   }
   
   /* Display the dropdown content to the right by default */

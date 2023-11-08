@@ -16,6 +16,9 @@ if(isset($_GET["id"]))
 {
     $list = Worker::getWorkerExpense($_GET["id"]);
     $text = "";
+}else
+{
+    header('Location: controller-worker-list.php');
 }
 
 $errors = [];

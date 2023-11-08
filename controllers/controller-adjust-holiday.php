@@ -13,6 +13,11 @@ if(!isset($_SESSION["id"])){
 }
 $plus_minus = true;
 
+if(!isset($_GET["id"]))
+{
+    header('Location: controller-worker-list.php');
+}
+
 $errors = [];
 $number = 0;
 $holiday_count = Worker::getWorkerHolidayCount($_GET["id"]);

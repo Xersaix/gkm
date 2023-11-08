@@ -15,6 +15,11 @@ if(!isset($_SESSION["id"])){
 }else{
     $connected = true;
 }
+if(!isset($_GET["id"]))
+{
+    header('Location: controller-worker-list.php');
+}
+
 $date = "";
 $dateRegex = '/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/'; 
 $errors = [];

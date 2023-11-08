@@ -9,7 +9,7 @@ $newest_notif = Worker::get4NewNotif($_SESSION["id"]);
 <nav class="my-navbar pr-3 ">
 
     <div class="left-part-nav">
-        <i class="bi bi-list is-size-3 mx-5 is-hidden-desktop" id="burger-button"></i>
+        <i class="bi bi-list is-size-3 mx-5 hidden-dekstop" id="burger-button"></i>
     </div>
     <div class="right-part-nav">
 
