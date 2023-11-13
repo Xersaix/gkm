@@ -1,14 +1,14 @@
 var numberNotif = document.getElementById("number-notif");
 var numberNotif2 = document.getElementById("number-notif2");
 
-function setNotificationNumber(callback) {
+function setNotificationNumber() {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "../helpers/get_number_notif.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function() {
       if (xhr.readyState === 4 && xhr.status === 200) {
         var response = JSON.parse(xhr.responseText); // Analyse la réponse JSON
-        console.log(response)
+       
         numberNotif.innerHTML = response;
         numberNotif2.innerHTML = `${response} Nouvelles Notifications`;
       }

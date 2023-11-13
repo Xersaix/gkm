@@ -151,6 +151,16 @@ public static function getWorkerFile($id)
     return $result;
 }
 
+public static function deleteFile($id)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("DELETE FROM `worker_file`WHERE id = :id");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $conn = null;
+
+}
+
 public static function addHoliday($id,$fullday,$date)
 {
     $conn = Database::connectDatabase();
@@ -299,6 +309,19 @@ public static function setHolidayState($id,$state)
     $conn = null;
 }
 
+
+public static function getHoliday($id)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("SELECT * FROM `holiday_claim`WHERE id = :id");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $result =  $stmt->fetch();
+    $conn = null;
+    return $result;
+}
+
 public static function plusHoliday($id,$number)
 {
 $conn = Database::connectDatabase();
@@ -367,7 +390,7 @@ return $result;
 
 }
 
-public static function getAFile()
+public static function getAllFile()
 {
 $conn = Database::connectDatabase();
 $stmt = $conn->prepare("SELECT * FROM society_file");
@@ -389,6 +412,20 @@ public static function deleteNotif($id)
 }
 
 public static function newNotif($id,$date,$title,$icon,$text)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("INSERT INTO `notification`( `date`, `title`, `text`, `icon`, `seen`, `ID_Worker`) VALUES (:date, :title , :text , :icon , 0 , :id )");
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':date', $date);
+    $stmt->bindParam(':title', $title);
+    $stmt->bindParam(':icon', $icon);
+    $stmt->bindParam(':text', $text);
+    $stmt->execute();
+    $conn = null;
+}
+
+
+public static function newNotifToAdmin($id,$date,$title,$icon,$text)
 {
     $conn = Database::connectDatabase();
     $stmt = $conn->prepare("INSERT INTO `notification`( `date`, `title`, `text`, `icon`, `seen`, `ID_Worker`) VALUES (:date, :title , :text , :icon , 0 , :id )");

@@ -25,6 +25,7 @@ aside_overlay.onclick = function(event) {
 
 // When the window is resized change the state of the aside and overlay
 window.addEventListener("resize",function(){
+    console.log(aside_menu.style.top)
 
 
     if(this.window.screen.width >769)
@@ -36,6 +37,12 @@ window.addEventListener("resize",function(){
         aside_overlay.style.visibility = "hidden";
         aside_menu_state = false;
     }
+    if(aside_menu.style.position == "absolute")
+    {
+        aside_overlay.style.visibility = "visible"; 
+    }
+
+
 
 
 })
