@@ -2,7 +2,7 @@
 <div class="columns mx-0 calendar-menu ">
 
 <div class="column  is-flex is-flex-direction-row is-align-items-center">
-    <button class="button is-link is-rounded">Aujourd'hui</button>
+<a class="button is-link is-rounded" href="?day=<?= date("d")?>&month=<?= date("m")?>&year=<?= date("y")?>">Aujourd'hui</a>
     <a href="?day=<?= date("d",strtotime($prev_month))?>&month=<?= date("m",strtotime($prev_month))?>&year=<?= date("y",strtotime($prev_month))?>"><i class="bi bi-arrow-left-circle-fill is-size-3 mx-2 "></a></i>
     <p class="mb-0" ><?= $selected_date ?></p>
     <a href="?day=<?= date("d",strtotime($next_month))?>&month=<?= date("m",strtotime($next_month))?>&year=<?= date("y",strtotime($next_month))?>"><i class="bi bi-arrow-right-circle-fill is-size-3 mx-2 "></a></i>
@@ -88,18 +88,18 @@
                                 
                                 <?php  }elseif (is_int(array_search($date1->format("Y-m-d"), array_column($month_absense, 'date'))) && $month_absense[array_search($date1->format("Y-m-d"), array_column($month_absense, "date"))]["Fullday"] == 1) {  ?>
 
-                                <i class="bi bi-dash-circle  p-0 m-0 is-size-5 has-text-weight-bold"></i>
+                                <i class="bi bi-dash-circle  p-0 m-0  is-size-5 has-text-weight-bold"></i>
                                 <?php } ?>
 
                             <?php if(is_int(array_search($date1->format("Y-m-d"), array_column($month_holiday, 'date')))){ ?>
                                 
-                                <button class="js-modal-trigger is-clickable mt-3" data-target="modal-js-<?=$day ?>">
+                                <button class="js-modal-trigger is-clickable mt-3" data-target="modal-js-<?=$day ?>-<?= $i?>">
                                    <i class="bi bi-info-square  p-0 m-0 is-size-5 has-text-weight-bold"></i>
                                     </button>
 
 
 
-                                <div id="modal-js-<?=$day ?>" class="modal">
+                                <div id="modal-js-<?=$day?>-<?= $i?>" class="modal">
                                     <div class="modal-background"></div>
 
                                     <div class="modal-content">

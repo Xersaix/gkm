@@ -2,7 +2,7 @@
 <div class="columns mx-0 calendar-menu ">
 
 <div class="column  is-flex is-flex-direction-row is-align-items-center">
-    <button class="button is-link is-rounded">Aujourd'hui</button>
+    <a class="button is-link is-rounded" href="?day=<?= date("d")?>&month=<?= date("m")?>&year=<?= date("y")?>">Aujourd'hui</a>
     <a href="?day=<?= date("d",strtotime($prev_month))?>&month=<?= date("m",strtotime($prev_month))?>&year=<?= date("y",strtotime($prev_month))?>"><i class="bi bi-arrow-left-circle-fill is-size-3 mx-2 "></a></i>
     <p class="mb-0" ><?= $selected_date ?></p>
     <a href="?day=<?= date("d",strtotime($next_month))?>&month=<?= date("m",strtotime($next_month))?>&year=<?= date("y",strtotime($next_month))?>"><i class="bi bi-arrow-right-circle-fill is-size-3 mx-2 "></a></i>
@@ -19,7 +19,7 @@
 
 </div>
 <div class="table-container my-3">
-            <table class="table is-bordered  is-narrow is-hoverable is-fullwidth">
+            <table class="table is-bordered has-text-centered is-narrow is-hoverable is-fullwidth">
                 <thead>
                     <tr>
                         <th style="border-top:none;border-left:none;background-color: #F5F7FB;"></th>
@@ -30,7 +30,7 @@
                                 $date1  = \DateTime::createFromFormat($format, $day . "-" . $_GET["month"] . "-" . $_GET["year"]);
                                 $day_of_week = $date1->format('D');
                             ?>
-                                <th class="table-top <?= ($day_of_week == "Sun" || $day_of_week == "Sat") ? 'has-background-grey-light' : "" ?>"><?= $day ?></th>
+                                <th class="table-top <?= ($day_of_week == "Sun" || $day_of_week == "Sat") ? 'has-background-grey-lighter' : "" ?>"><?= $day ?></th>
                          <?php   } ?>
                         
                         
@@ -60,7 +60,7 @@
                             }
 
                             ?>
-                               <td class="<?= ($date1 < $date2) ? 'has-background-info' : "" ?> <?= ($day_of_week == "Sun" || $day_of_week == "Sat") ? 'has-background-grey-light' : "" ?>
+                               <td class="<?= ($date1 < $date2) ? 'has-background-info-light' : "" ?> <?= ($day_of_week == "Sun" || $day_of_week == "Sat") ? 'has-background-grey-lighter' : "" ?>
                                <?=(is_int(array_search($date1->format("Y-m-d"), array_column($month_holiday, 'date'))) && $month_holiday[array_search($date1->format("Y-m-d"), array_column($month_holiday, "date"))]["ID_status"] == 2 ) ? "has-background-warning" : "" ?> 
                                <?=(is_int(array_search($date1->format("Y-m-d"), array_column($month_holiday, 'date'))) && $month_holiday[array_search($date1->format("Y-m-d"), array_column($month_holiday, "date"))]["ID_status"] == 3 ) ? "has-background-danger" : "" ?>
                                <?=(is_int(array_search($date1->format("Y-m-d"), array_column($month_holiday, 'date'))) && $month_holiday[array_search($date1->format("Y-m-d"), array_column($month_holiday, "date"))]["ID_status"] == 1 ) ? "has-background-success" : "" ?>">

@@ -2,12 +2,12 @@
 session_start();
 include_once "../models/Worker.php";
 $page_name = [];
+// Change the selected link in the aside menu
 $page_name["home"] = "selected-aside";
 $connected = false;
 if(!isset($_SESSION["id"])){
     $connected = false;
     header('Location: controller-connection.php');
-    echo $_SESSION["id"];
 }else{
     $connected = true;
 }

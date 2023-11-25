@@ -65,6 +65,22 @@ if(isset($_POST["deleteP"]) && isset($_POST["file-image"]) && isset($_POST["work
     }
 
 }
+if(isset($_POST["deleteS"]) && isset($_POST["file-image"]))
+{
+
+    $fileName = '../assets/img/uploads/society/'.$_POST["file-image"];
+    if(unlink($fileName))
+    {
+
+        Worker::deleteSocietyFile($_POST["deleteS"]);
+        header('Location: controller-worker-list.php');
+    }else{
+    
+        echo "cannot be deleted du to an error";
+
+    }
+
+}
 
 }
 ?>

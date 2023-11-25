@@ -1,17 +1,13 @@
 <?php
 session_start();
 include_once "../models/Worker.php";
-$connected = false;
-
-if(!isset($_SESSION["id"]))
+if(isset($_SESSION["id"]))
 {
-$connected = false;
+    header('Location: controller-home.php');
 }
-
 $email = "";
 $password = "";
 $errors = [];
-
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
     // Verify email existance
@@ -20,23 +16,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         $email = htmlspecialchars($_POST["email"]);
         if(empty($email))
         {
-            $errors["email"] = "Champs obligatoire !" ;
+            $errors["email"] = "Champ obligatoire !" ;
         }
         else if(!worker::verifyEmail($email))
         {
-            $errors["email"] = "Employer introuvable !" ; 
-            
+            $errors["email"] = "Employé introuvable !" ;     
         }
-
     }
-
     // Verify password match to email
     if(isset($_POST["password"]))
     {
         $password = htmlspecialchars($_POST["password"]);
         if(empty($password))
         {
-            $errors["password"] = "Champs obligatoire !";
+            $errors["password"] = "Champ obligatoire !";
         }
         else if(!isset($errors["email"]) )
         {
@@ -44,27 +37,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             {
                 $errors["password"] = "Mot de passe incorrecte !";
             }
-
         }
-
     }
-
     // Verify error
     if(count($errors) == 0)
-{
-  $result =  Worker::getWorkerByEmail($email);
-  $_SESSION["id"] = $result["id"];
-  $_SESSION["id_account_type"] = $result["id_account_type"];
-  $_SESSION["lastname"] = $result["lastname"];
-  $_SESSION["firstname"] = $result["firstname"];
-  $connected = true;
-  Worker::newNotif($_SESSION["id"],date('Y-m-d H:i:s'),"Connection","bi bi-person-check has-text-success","Nouvelle connection");
-  header("Location: controller-home.php");
-
+    {
+        $result =  Worker::getWorkerByEmail($email);
+        $_SESSION["id"] = $result["id"];
+        $_SESSION["id_account_type"] = $result["id_account_type"];
+        $_SESSION["lastname"] = $result["lastname"];
+        $_SESSION["firstname"] = $result["firstname"];
+        header("Location: controller-home.php");
+    }
 }
-
-}
-
 include "../views/connection.php";
-
 ?>

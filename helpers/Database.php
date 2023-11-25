@@ -2,7 +2,7 @@
 include_once "../config.php";
 class Database {
 
-
+// function for connecting other method to the BDD
 public static function connectDatabase()
 {
     $servername = SERVERNAME;
@@ -13,12 +13,12 @@ public static function connectDatabase()
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-     
+    
     return $conn; 
     } catch(PDOException $e) {
         echo "Erreur: " . $e->getMessage();
         die();
-      }
+    }
 }
 }
 ?>

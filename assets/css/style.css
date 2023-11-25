@@ -155,8 +155,6 @@ aside .aside-top
     z-index: 10;
 }
 
-
-
 @media only screen and (max-width: 769px) {
     .viewport #aside-menu {
         position: absolute;
@@ -228,13 +226,23 @@ aside .aside-top
     justify-content: center;
 
     /* Colors */
-    background-color: #3B7DDD;
+    
     color: #fff;
 
     /* Rounded border */
     border-radius: 50%;
     height: 2.5rem;
     aspect-ratio: 1/1;
+}
+
+.worker-color{
+    background-color: #3B7DDD;
+}
+.admin-color{
+    background-color: #dd3b3b;
+}
+.secretary-color{
+    background-color: #3bdd66;
 }
 .initial-avatar-nav {
     /* Center the content */
@@ -243,7 +251,7 @@ aside .aside-top
     justify-content: center;
 
     /* Colors */
-    background-color: #3B7DDD;
+
     color: #fff;
 
     /* Rounded border */

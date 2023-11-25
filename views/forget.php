@@ -34,11 +34,11 @@
                     </div>
                     
                     <div class="column">
-                        <button class="button is-link is-fullwidth" type="submit">Envoyer un mail</button>
+                        <button class="button is-link is-fullwidth" type="submit">Envoyer un Email</button>
                     </div>
                     <div class="has-text-centered">
                         <?php if ($send) { ?>
-                            <p>Mail envoyer avec succès</p>
+                            <p>Email envoyer avec succès</p>
 
                             <?php }?>
                         </p>

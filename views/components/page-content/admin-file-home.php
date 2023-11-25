@@ -79,7 +79,7 @@
                     <div class="card-content">
                         <div class="media">
                             <div class="media-left">
-                                <figure class="image is-48x48">
+                                <figure class="image ml-0 mr-2 is-48x48">
                                 <i class="bi bi-file-text-fill is-size-3"></i>
                                 </figure>
                             </div>
@@ -95,7 +95,7 @@
                     $ext = pathinfo($fileName, PATHINFO_EXTENSION);
                     
                     ?>
-                    <a href="../assets/img/uploads/file/<?= $_GET["id"]?>/<?=$list[$i]["image"] ?>" data-fancybox data-caption="Single image" class="card-footer-item">
+                    <a href="../assets/img/uploads/file/<?= $_GET["id"]?>/<?=$list[$i]["image"] ?>" data-fancybox data-caption="<?= $list[$i]["image"] ?>" class="card-footer-item">
                         Voir
                     </a>
                    
@@ -143,7 +143,7 @@
                     $ext = pathinfo($fileName, PATHINFO_EXTENSION);
                     
                     ?>
-                    <a href="../assets/img/uploads/payslip/<?= $_GET["id"]?>/<?=$list2[$i]["image"] ?>" data-fancybox data-caption="Single image" class="card-footer-item">
+                    <a href="../assets/img/uploads/payslip/<?= $_GET["id"]?>/<?=$list2[$i]["image"] ?>" data-fancybox data-caption="<?= $list2[$i]["image"] ?>" class="card-footer-item">
                         Voir
                     </a>
                    

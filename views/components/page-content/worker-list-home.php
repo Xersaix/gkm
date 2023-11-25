@@ -8,10 +8,10 @@
                 <thead class="has-text-centered">
                     <tr>
                         <th>Nom</th>
-                        <th>Congée</th>
+                        <th>Congé</th>
                        
                         <th>Ajout de document</th>
-                        <th>Ajustement de congée</th>
+                        <th>Ajustement de congé</th>
                         <th>Frais</th>
                         <th>Absence</th>
                         <th>Documents</th>

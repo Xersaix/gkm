@@ -32,7 +32,21 @@ $newest_notif = Worker::get4NewNotif($_SESSION["id"]);
                     </div>
                 </div>
         </div></i>
-        <div class="initial-avatar-nav ml-3 mr-3">
+
+        <?php
+        $avatar_color = "";
+        if($_SESSION["id_account_type"] == 3)
+        {
+            $avatar_color = "worker-color";
+        }else if($_SESSION["id_account_type"] == 1)
+        {
+            $avatar_color = "admin-color";
+        }else if($_SESSION["id_account_type"] == 2)
+        {
+            $avatar_color = "secretary-color";
+        }
+        ?>
+        <div class="initial-avatar-nav <?= $avatar_color ?> ml-3 mr-3">
             <p class="is-size-7">
                 <?= $_SESSION["firstname"][0]?>
                 <?= $_SESSION["lastname"][0]?>

@@ -1,10 +1,24 @@
 <!-- Aside overlay -->
 <div class="aside-overlay" id="aside-overlay"></div>
 <!-- Aside -->
+
+<?php
+        $avatar_color = "";
+        if($_SESSION["id_account_type"] == 3)
+        {
+            $avatar_color = "worker-color";
+        }else if($_SESSION["id_account_type"] == 1)
+        {
+            $avatar_color = "admin-color";
+        }else if($_SESSION["id_account_type"] == 2)
+        {
+            $avatar_color = "secretary-color";
+        }
+        ?>
 <aside class="pb-5" id="aside-menu">
     <!-- In Aside top of the menu -->
     <div class="aside-top has-text-white">
-        <div class="initial-avatar ml-5 mr-5"><p><?= $_SESSION["firstname"][0]?> <?= $_SESSION["lastname"][0]?></p></div>
+        <div class="initial-avatar <?= $avatar_color ?>  ml-5 mr-5"><p><?= $_SESSION["firstname"][0]?> <?= $_SESSION["lastname"][0]?></p></div>
         <p class="is-size-6 is-size-7-mobile"> <?= $_SESSION["firstname"]?> <?= $_SESSION["lastname"]?></p>
     </div>
 
@@ -82,7 +96,7 @@
     </div>
     
     <div class="aside-link <?= $page_name["all-holiday"] ?? "" ?>">
-        <a href="controller-all-holiday.php?day=<?= date("d")?>&month=<?= date("m")?>&year=<?= date("y")?>" class="is-size-7"><i class="bi bi-calendar-event mr-3 is-size-6"></i>Congée des employés</a>
+        <a href="controller-all-holiday.php?day=<?= date("d")?>&month=<?= date("m")?>&year=<?= date("y")?>" class="is-size-7"><i class="bi bi-calendar-event mr-3 is-size-6"></i>Congé des employés</a>
     </div>
 
 

@@ -84,9 +84,7 @@ public static function getMonthHoliday($id,$date)
     $conn = Database::connectDatabase();
     $stmt = $conn->prepare("SELECT *
     FROM holiday_claim
-    WHERE ID_Worker = :id
-      AND DATE_FORMAT(date, '%y-%m') = :date ;
-    ");
+    WHERE ID_Worker = :id AND DATE_FORMAT(date, '%y-%m') = :date ;");
     $stmt->bindParam(':id', $id);
     $stmt->bindParam(':date', $date);
     $stmt->execute();
@@ -155,6 +153,15 @@ public static function deleteFile($id)
 {
     $conn = Database::connectDatabase();
     $stmt = $conn->prepare("DELETE FROM `worker_file`WHERE id = :id");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $conn = null;
+
+}
+public static function deleteSocietyFile($id)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("DELETE FROM `society_file`WHERE id = :id");
     $stmt->bindParam(':id', $id);
     $stmt->execute();
     $conn = null;
@@ -425,17 +432,28 @@ public static function newNotif($id,$date,$title,$icon,$text)
 }
 
 
-public static function newNotifToAdmin($id,$date,$title,$icon,$text)
+public static function getallManager()
 {
     $conn = Database::connectDatabase();
-    $stmt = $conn->prepare("INSERT INTO `notification`( `date`, `title`, `text`, `icon`, `seen`, `ID_Worker`) VALUES (:date, :title , :text , :icon , 0 , :id )");
-    $stmt->bindParam(':id', $id);
-    $stmt->bindParam(':date', $date);
-    $stmt->bindParam(':title', $title);
-    $stmt->bindParam(':icon', $icon);
-    $stmt->bindParam(':text', $text);
+    $stmt = $conn->prepare("SELECT * from worker where id_account_type != 3 ");
     $stmt->execute();
+    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $result =  $stmt->fetchAll();
     $conn = null;
+    return $result;
+
+
+}
+
+public static function newNotifToAdmin($date,$title,$icon,$text)
+{
+
+  $manager_list = Worker::getallManager();
+  for ($i=0; $i < count($manager_list) ; $i++) {
+
+    Worker::newNotif($manager_list[$i]["id"],$date,$title,$icon,$text);
+
+  }
 }
 
 public static function newForgot($email,$key,$date)

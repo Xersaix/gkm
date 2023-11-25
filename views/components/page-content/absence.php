@@ -1,7 +1,7 @@
 <div class="columns is-flex is-justify-content-center">
     <div class="column is-half ">
         <div class="three">
-            <h1>Demande de congé</h1>
+            <h1>Déclarer une absence</h1>
           </div>
         <form action="" method="POST" enctype="multipart/form-data">
 

@@ -30,7 +30,7 @@ class Expense
         $conn = Database::connectDatabase();
     
         $stmt = $conn->prepare("UPDATE `expense_note` SET `payment_date` = :date, `payment_ttc` = :ttc, `reason` = :reason,
-           `id_Expense_Type` = :type , `ID_Worker` = :employer, `ID_status` = 2 , `image` = :img   WHERE id = :id ");
+        `id_Expense_Type` = :type , `ID_Worker` = :employer, `ID_status` = 2 , `image` = :img   WHERE id = :id ");
     
         $stmt->bindParam(':date', $date);
         $stmt->bindParam(':ttc', $ttc);
@@ -131,6 +131,49 @@ class Expense
 
 
     }
+
+public static function verifyWorkerIDforExpense($id,$id_worker){
+
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("SELECT * FROM `expense_note` where id = :id AND ID_Worker = :id_worker");
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':id_worker', $id_worker);
+    $stmt->execute();
+    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $result =  $stmt->fetchAll();
+    $conn = null;
+    if(!empty($result))
+    {
+        return true;
+    }else{
+        return false;
+    }
+
+
+
+}
+
+
+    public static function setExpenseState($id,$state)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("UPDATE expense_note SET ID_status = :state WHERE id = :id ");
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':state', $state);
+    $stmt->execute();
+    $conn = null;
+}
+
+public static function setExpenseDate($id,$date,$result)
+{
+    $conn = Database::connectDatabase();
+    $stmt = $conn->prepare("UPDATE expense_note SET validation_date = :date, result_commentary = :result WHERE id = :id ");
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':date', $date);
+    $stmt->bindParam(':result', $result);
+    $stmt->execute();
+    $conn = null;
+}
 }
 
 

@@ -8,7 +8,7 @@
             <div class="column holiday-data is-5 p-5 mx-3 my-2 pb-0 has-background-white box">
                 <div class="columns is-mobile ">
                     <div class="column is-8">
-                        <p class="is-size-6 has-text-weight-bold has-text-grey">Congées</p>
+                        <p class="is-size-6 has-text-weight-bold has-text-grey">Congés</p>
                     </div>
                     <div class="column is-rest ">
                         <i class="bi bi-calendar-event "></i>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="columns py-0">
                     <div class="column is-12">
-                        <p class="is-size-7 has-text-weight-light has-text-grey">Total des jours de congées</p>
+                        <p class="is-size-7 has-text-weight-light has-text-grey">Total des jours de congés</p>
                     </div>
                 </div>
 
@@ -32,7 +32,7 @@
             <div class="column holiday-data is-5 p-5 mx-3 my-2 pb-0 has-background-white box">
                 <div class="columns is-mobile ">
                     <div class="column is-8">
-                        <p class="is-size-6 has-text-weight-bold has-text-grey">Congée</p>
+                        <p class="is-size-6 has-text-weight-bold has-text-grey">Congé</p>
                     </div>
                     <div class="column is-rest ">
                         <i class="bi bi-calendar-week "></i>
@@ -113,7 +113,7 @@
     <!-- Last file liste -->
     <div class="column is-12-touch  custom-show file-list-box is-half pt-5 ml-3 is-flex-shrink-2 mr-2 is-12-mobile box is-flex is-flex-direction-row is-align-items-center is-flex-wrap-wrap">
     
-        <div class=" file-list">
+        <div class=" file-list mr-2">
             <p class="menu-label">
                 Fiche de paie récente
             </p>
@@ -121,6 +121,9 @@
             <?php for ($i=0; $i < count($last_payslip) ; $i++) { ?>
                     <li class="is-size-6"><a data-fancybox data-caption="Document du <?= $last_payslip[$i]["date"] ?>" href="../assets/img/uploads/payslip/<?= $_SESSION["id"]?>/<?=$last_payslip[$i]["image"] ?>">Fiche de paie du <?= $last_payslip[$i]["date"] ?><span class="has-text-grey  ml-5 has-text-weight-light"> Voir</span></a></li>
                <?php } ?>
+               <?php if(count($last_payslip) == 0) { ?>
+                <p>Aucune fiche de paie</p>
+                <?php } ?>
             </ul>
         </div>
         <div class="  file-list">
@@ -131,6 +134,9 @@
                 <?php for ($i=0; $i < count($last_file) ; $i++) { ?>
                     <li><a data-fancybox data-caption="Document du <?= $last_file[$i]["date"] ?>" href="../assets/img/uploads/file/<?= $_SESSION["id"]?>/<?=$last_file[$i]["image"] ?>">Document du <?= $last_file[$i]["date"] ?> <span class="has-text-grey ml-5 has-text-weight-light"> Voir</span></a> </li>
                <?php } ?>
+               <?php if(count($last_file) == 0) { ?>
+                <p>Aucun document</p>
+                <?php } ?>
             </ul>
         </div>
     </div>

@@ -7,12 +7,12 @@
                 <!-- Card for each file -->
 
                 <?php for ($i=0; $i < count($list) ; $i++) {  ?>
-                    <div class="column is-one-third">
+                    <div class="column is-3">
                     <div class="card">
                         <div class="card-content">
                             <div class="media">
                                 <div class="media-left">
-                                    <figure class="image is-48x48">
+                                    <figure class="image ml-0 mr-2 is-48x48">
                                     <i class="bi bi-file-text-fill is-size-3"></i>
                                     </figure>
                                 </div>

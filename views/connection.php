@@ -45,15 +45,12 @@
 
                             </p>
                         </div>
-                        <a href="controller-forget.php" class="is-size-7 has-text-link">Mot de passe oublier?</a>
+                        <a href="controller-forget.php" class="is-size-7 has-text-link">Mot de passe oublié ?</a>
                     </div>
                     <div class="column">
                         <button class="button is-link is-fullwidth" type="submit">Se connecter</button>
                     </div>
-                    <div class="has-text-centered">
-                        <!-- <p class="is-size-7"> Don't have an account? <a href="#" class="has-text-link">Sign up</a> -->
-                        </p>
-                    </div>
+
                 </form>
             </div>
 

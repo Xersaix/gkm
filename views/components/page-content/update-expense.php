@@ -79,7 +79,7 @@
 
               <div class="field">
                             <div class="control has-text-centered my-3">
-                                <button class="button is-primary is-outlined" type="submit">Modifier</button>
+                                <button class="button is-info is-outlined" type="submit">Modifier</button>
                             </div>
                         </div>
 

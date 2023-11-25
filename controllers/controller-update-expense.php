@@ -3,8 +3,6 @@ session_start();
 include_once "../models/ExpenseType.php";
 include_once "../models/Expense.php";
 include_once "../models/Worker.php";
-
-
 $page_name = [];
 $page_name["expense"] = "selected-aside";
 $connected = false;
@@ -54,7 +52,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         if(empty($expense_date))
         {
             $errors["date"] = "Champs obligatoire";
-          
+    
         }else if(!preg_match($dateRegex,$expense_date))
         {
             $errors["date"] = "Date invalide";
@@ -93,46 +91,31 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     }
 
 
-    if(!empty($price_HT) && !empty($price_TTC))
-    {
 
-        if($price_HT >= $price_TTC)
-        {
-            $errors['price_ht'] = 'Prix HT >= Prix TTC'; 
-        }
-    }
     if(isset($_FILES["file"]))
     {
-
-
         $finfo = new finfo(FILEINFO_MIME_TYPE);
-
-       if($_FILES["file"]["error"] != 0 )
-       {
-
+        if($_FILES["file"]["error"] != 0 )
+        {
         if($_FILES["file"]["error"] != 4 )
         {
-                   $errors["file"] = '$_FILES["file"]["error"]';
+            $errors["file"] = '$_FILES["file"]["error"]';
+        }
+        }else{
+        if(!str_contains($finfo->file($_FILES["file"]["tmp_name"]), "image"))
+        {
+        $errors["file"] = "Le fichier n'est pas une image";
+        }
+        else if(!str_contains($_FILES["file"]["type"], "image"))
+        {
+        $errors["file"] = "Le fichier n'est pas une image2";
         }
 
-       }else{
-
-        if(!str_contains($finfo->file($_FILES["file"]["tmp_name"]), "image"))
-       {
-        $errors["file"] = "Le fichier n'est pas une image";
-       }
-       else if(!str_contains($_FILES["file"]["type"], "image"))
-       {
-        $errors["file"] = "Le fichier n'est pas une image2";
-       }
-
-       if($_FILES["file"]["size"] > 41943040)
-       {
-
-        $errors["file"] = "Le fichier est plus grand que 5mo";
-       }
-
-       }
+        if($_FILES["file"]["size"] > 41943040)
+        {
+            $errors["file"] = "Le fichier est plus grand que 5mo";
+        }
+        }
     }
 
 if(count($errors) == 0)
@@ -140,9 +123,10 @@ if(count($errors) == 0)
     if($_FILES["file"]["error"] == 4)
     {
         Expense::updateExpense($expense_date,$price_TTC,$expense_reason,$expense_type,$_SESSION["id"],$_GET["id"],$expense["image"]);
+        header('Location: controller-update-expense.php?id='.$_GET["id"]);
 
     }else{
-       
+    
     $file_path = '../assets/img/uploads/expense/'.$_SESSION["id"];
 
     $ext = "";
@@ -157,9 +141,7 @@ if(count($errors) == 0)
     
         move_uploaded_file($_FILES["file"]["tmp_name"],$file_path."/".$expense["image"]);
         Expense::updateExpense($expense_date,$price_TTC,$expense_reason,$expense_type,$_SESSION["id"],$_GET["id"],$expense["image"]);
-        clearstatcache(true,$file_path."/".$expense["image"]);
-        header('Location: controller-expense.php');
-
+        header('Location: controller-update-expense.php?id='.$_GET["id"]);
     }
 }
 

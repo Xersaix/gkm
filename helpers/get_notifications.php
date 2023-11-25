@@ -42,7 +42,7 @@ foreach ($newest_notif as $notification) {
     echo '<p class="is-size-7 has-text-grey has-text-medium">' . $notification["text"] . '</p>';
     echo '<p class="is-size-7 mt-0 has-text-grey has-text-weight-light is-family-monospace">' . get_time_ago(strtotime($notification["date"]))  . '</p>';
     echo '</div>';
-    echo '<i class="bi bi-x-circle close-notif mr-3 mt-2 is-size-6" data-notification-id="' . $notification["id"] . '"></i>';
+    echo '<i class="bi bi-x-circle close-notif  mt-2 is-size-6" data-notification-id="' . $notification["id"] . '"></i>';
     echo '</div>';
     echo '</div>';
     echo '</div>';

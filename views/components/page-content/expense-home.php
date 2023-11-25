@@ -13,7 +13,12 @@ foreach ($list as  $value) { ?>
       <button class="delete" aria-label="close"></button>
     </header>
     <section class="modal-card-body">
-     <p>Voulez-vous vraiment supprimer les frais datant du : <?= $value["payment_date"] ?> </p>
+      <p>Voulez-vous vraiment supprimer les frais datant du : <?= $value["payment_date"] ?> <br>
+      Type de dépense: <?= $value["expense_type"] ?><br>
+      Raison: <?= $value["reason"] ?> <br>
+      Montant: <?= $value["payment_ttc"]  ?> €<br>
+    
+      </p>
     </section>
     <footer class="modal-card-foot">
       <form action="" method="POST">
@@ -32,13 +37,13 @@ foreach ($list as  $value) { ?>
   <div class="modal-background"></div>
   <div class="modal-card">
     <header class="modal-card-head">
-      <p class="modal-card-title">Detail</p>
+      <p class="modal-card-title">Informations</p>
       <button class="delete" aria-label="close"></button>
     </header>
     <section class="modal-card-body">
       <p>Raison de la dépense:</p>
-     <p><?= $value["reason"] ?> </p>
-     <?php
+      <p><?= $value["reason"] ?> </p>
+      <?php
           if($value["status"] == "Accepté")
           {
               echo '<p>Accepté le '.$value["validation_date"].'<p>';
@@ -47,9 +52,11 @@ foreach ($list as  $value) { ?>
             echo '<p>Accepté le '.$value["validation_date"].'<p>';
             echo '<p> Raison: <br>'.$value["result_commentary"]."<p>";
           }
-     ?>
+      ?>
     </section>
-    
+    <footer class="modal-card-foot">
+
+    </footer>
   </div>
 </div>
 <?php } ; ?>
@@ -73,13 +80,13 @@ foreach ($list as  $value) { ?>
                     </tr>
                 </thead>
                 <tbody class="">
-               <?php foreach ($list as  $value) { ?>
+              <?php foreach ($list as  $value) { ?>
                 <?php
                     // get the base64 file
                     $imgData = $value["image"];
 
-                    // link to the file for the img tag <img src="data:image/gif;base64,R0lGODdhAQABAPAAAP8AAAAAACwAAAAAAQABAAACAkQBADs" />
-                    $base64ImageSrc = "../assets/img/uploads/expense/".$_SESSION["id"]."/". $imgData; 
+                    
+                    $ImageSrc = "../assets/img/uploads/expense/".$_SESSION["id"]."/". $imgData; 
 
                   ?>
 
@@ -88,11 +95,11 @@ foreach ($list as  $value) { ?>
                         <td><p class="mt-3"> <?= $value["expense_type"] ?></p></td>
                         <td><p class="mt-3"><?= mb_strimwidth($value["reason"],0,10,'...') ?></p></td>
                         <td><p class="mt-3"><?= $value["payment_ttc"] ?> €</p></td>
-
+                        <!-- Change the button  -->
                         <?php
                         if($value["status"] == "Accepté")
                         {
-                            echo '<td class="has-text-centered"><span class="tag is-success mt-2 is-medium">Accepté</span></td>';
+                            echo '<td class="has-text-centered"><span class="tag is-success mt-2 is-medium"><p class="mx-2">Accepté</p></span></td>';
                         }
                         else if($value["status"] == "En attente")
                         {
@@ -100,30 +107,30 @@ foreach ($list as  $value) { ?>
                         }
                         else if($value["status"] == "Refusé")
                         {
-                          echo '<td class="has-text-centered"><span class="tag is-danger mt-2 is-medium tooltip">Refusé </span></td>';
+                          echo '<td class="has-text-centered"><span class="tag is-danger px-3 mt-2 is-medium tooltip"><p class="mx-3"> Refusé</p> </span></td>';
                         }
                         ?>
-                        <td class=""><a href="<?=$base64ImageSrc ?>" class="button mt-1" data-fancybox data-caption="<?= $imgData ?>">Voir</a></span></td>
+                        <td class=""><a href="<?=$ImageSrc ?>" class="button mt-1" data-fancybox data-caption="<?= $imgData ?>">Voir</a></span></td>
                         <td class="has-text-centered p-2">
                 <?php if ($value["status"] == "En attente") { ?> 
-                <a class="button is-success has-text-white" href="controller-update-expense.php?id=<?= $value['expense_id'] ?>">
+                <a class="button " href="controller-update-expense.php?id=<?= $value['expense_id'] ?>">
                 <i class="bi bi-pencil-square"></i>
               </a>
               
-              <button class="js-modal-trigger button is-danger " data-target="<?= $value["expense_id"]  ?>">
-              <i class="bi bi-trash"></i>
-              </button>
-                
 
               <?php } ?>
               <button class="js-modal-trigger button  " data-target="info-<?= $value["expense_id"]  ?>">
               <i class="bi bi-info-circle"></i>
               </button>
+
+
+              <?php if ($value["status"] == "En attente") { ?> 
+                <button class="js-modal-trigger button is-danger is-outlined " data-target="<?= $value["expense_id"]  ?>">
+              <i class="bi bi-trash"></i>
+              </button>
+              <?php } ?>
               </td>
                     </tr>
-                    
-
-
                     <?php } ?>
 
                 </tbody>
